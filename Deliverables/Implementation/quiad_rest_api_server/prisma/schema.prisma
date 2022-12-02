@@ -1,47 +1,57 @@
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model Account {
-  id          Int     @id @default(autoincrement())
-  email       String  @unique
-  username    String  @unique
-  password    String  @unique
+  id         Int          @id @default(autoincrement())
+  email      String       @unique
+  username   String       @unique
+  password   String       @unique
+  User       User[]
+  Supervisor Supervisor[]
 }
 
 model Role {
-  id          Int     @id @default(autoincrement)
-  name        String  @unique
-  capabilities  Capability[]
+  id           Int          @id @default(autoincrement())
+  name         String       @unique
+  capabilities Capability[]
+  User         User[]
 }
 
 model Operation {
-  id          Int     @id @default(autoincrement)
-  name        String
+  id         Int          @id @default(autoincrement())
+  name       String
+  Capability Capability[]
 }
 
 model Capability {
-  operation   Operation
-  role        Role
-  @@id([operation, role])
+  operationId Int
+  operation   Operation @relation(fields: [operationId], references: [id])
+  roleId      Int
+  role        Role      @relation(fields: [roleId], references: [id])
+
+  @@id([operationId, roleId])
 }
 
 model User {
-  id          Int     @id @default(autoincrement())
-  residence   String
-  account     Account
-  role        Role
-  Node        Node
+  id        Int       @id @default(autoincrement())
+  residence String
+  account   Account   @relation(fields: [accountId], references: [id])
+  role      Role      @relation(fields: [roleId], references: [id])
+  Node      Node      @relation(fields: [nodeId], references: [id])
+  accountId Int
+  roleId    Int
+  nodeId    Int
+  Curator   Curator[]
 }
 
 model Category {
-  id          Int     @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   description String
 }
 
@@ -51,38 +61,42 @@ enum Sex {
 }
 
 model Node {
-  id          Int     @id @default(autoincrement())
-  firstname   String
-  lastname    String
-  birthdate   DateTime
-  deathdate   DateTime
-  birthplace  String
-  deathplace  String
-  sex         Sex
-  mother      Node
-  father      Node
+  id                Int      @id @default(autoincrement())
+  firstname         String?
+  lastname          String?
+  birthdate         DateTime?
+  deathdate         DateTime?
+  birthplace        String?
+  deathplace        String?
+  sex               Sex
+  User              User[]
+  motherId          Int?
+  mother            Node?     @relation("mother", fields: [motherId], references: [id])
+  MotherHasChildren Node[]    @relation("mother")
+  fatherId          Int?
+  father            Node?     @relation("father", fields: [fatherId], references: [id])
+  FatherHasChildren Node[]    @relation("father")
 }
 
 model Curator {
-  id          Int       @id @default(autoincrement())
-  phone       String
-  fax         String
-  occupation  String
-  user        User
+  phone      String
+  fax        String
+  occupation String
+  userId     Int    @id
+  user       User   @relation(fields: [userId], references: [id])
 }
 
 model Supervisor {
-  id          Int       @id @default(autoincrement())
-  firstname   String
-  lastname    String
-  birthdate   DateTime
-  birthplace  String
-  sex         Sex
-  account     Account
+  firstname  String
+  lastname   String
+  birthdate  DateTime
+  birthplace String
+  sex        Sex
+  accountId  Int      @id
+  account    Account  @relation(fields: [accountId], references: [id])
 }
 
 model Document {
-  id          Int       @id @default(autoincrement())
-  path        String
-  
+  id   Int    @id @default(autoincrement())
+  path String
 }
