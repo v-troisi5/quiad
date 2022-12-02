@@ -1,0 +1,88 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id          Int     @id @default(autoincrement())
+  email       String  @unique
+  username    String  @unique
+  password    String  @unique
+}
+
+model Role {
+  id          Int     @id @default(autoincrement)
+  name        String  @unique
+  capabilities  Capability[]
+}
+
+model Operation {
+  id          Int     @id @default(autoincrement)
+  name        String
+}
+
+model Capability {
+  operation   Operation
+  role        Role
+  @@id([operation, role])
+}
+
+model User {
+  id          Int     @id @default(autoincrement())
+  residence   String
+  account     Account
+  role        Role
+  Node        Node
+}
+
+model Category {
+  id          Int     @id @default(autoincrement())
+  description String
+}
+
+enum Sex {
+  MALE
+  FEMALE
+}
+
+model Node {
+  id          Int     @id @default(autoincrement())
+  firstname   String
+  lastname    String
+  birthdate   DateTime
+  deathdate   DateTime
+  birthplace  String
+  deathplace  String
+  sex         Sex
+  mother      Node
+  father      Node
+}
+
+model Curator {
+  id          Int       @id @default(autoincrement())
+  phone       String
+  fax         String
+  occupation  String
+  user        User
+}
+
+model Supervisor {
+  id          Int       @id @default(autoincrement())
+  firstname   String
+  lastname    String
+  birthdate   DateTime
+  birthplace  String
+  sex         Sex
+  account     Account
+}
+
+model Document {
+  id          Int       @id @default(autoincrement())
+  path        String
+  
+}
