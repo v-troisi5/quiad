@@ -1,6 +1,7 @@
 {
   "name": "quiad_rest_api_server",
   "version": "1.0.0",
+  "type": "commonjs",
   "description": "Server REST API della piattaforma Quiad, dedicata alla creazione e alla gestione di alberi genealogici e documentazione storica",
   "main": "dist/index.js",
   "scripts": {
