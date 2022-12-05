@@ -11,22 +11,22 @@ model Account {
   id         Int          @id @default(autoincrement())
   email      String       @unique
   username   String       @unique
-  password   String       @unique
-  User       User[]
-  Supervisor Supervisor[]
+  password   String
+  user       User?
+  supervisor Supervisor?
 }
 
 model Role {
   id           Int          @id @default(autoincrement())
   name         String       @unique
   capabilities Capability[]
-  User         User[]
+  user         User[]
 }
 
 model Operation {
   id         Int          @id @default(autoincrement())
   name       String
-  Capability Capability[]
+  capabilities Capability[]
 }
 
 model Capability {
@@ -43,11 +43,11 @@ model User {
   residence String
   account   Account   @relation(fields: [accountId], references: [id])
   role      Role      @relation(fields: [roleId], references: [id])
-  Node      Node      @relation(fields: [nodeId], references: [id])
-  accountId Int
+  node      Node      @relation(fields: [nodeId], references: [id])
+  accountId Int       @unique
   roleId    Int
-  nodeId    Int
-  Curator   Curator[]
+  nodeId    Int       @unique
+  curator   Curator?
 }
 
 model Category {
@@ -61,7 +61,7 @@ enum Sex {
 }
 
 model Node {
-  id                Int      @id @default(autoincrement())
+  id                Int       @id @default(autoincrement())
   firstname         String?
   lastname          String?
   birthdate         DateTime?
@@ -69,13 +69,13 @@ model Node {
   birthplace        String?
   deathplace        String?
   sex               Sex
-  User              User[]
+  user              User?
   motherId          Int?
   mother            Node?     @relation("mother", fields: [motherId], references: [id])
-  MotherHasChildren Node[]    @relation("mother")
+  motherHasChildren Node[]    @relation("mother")
   fatherId          Int?
   father            Node?     @relation("father", fields: [fatherId], references: [id])
-  FatherHasChildren Node[]    @relation("father")
+  fatherHasChildren Node[]    @relation("father")
 }
 
 model Curator {
