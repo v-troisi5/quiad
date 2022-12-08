@@ -1,0 +1,6 @@
+{
+    "files.exclude": {
+        "assets": true,
+        "Deliverables/*.pdf": true
+    }
+}

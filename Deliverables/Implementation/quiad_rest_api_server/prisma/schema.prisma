@@ -8,9 +8,9 @@ datasource db {
 }
 
 model Account {
-  id         Int          @id @default(autoincrement())
-  email      String       @unique
-  username   String       @unique
+  id         Int         @id @default(autoincrement())
+  email      String      @unique
+  username   String      @unique
   password   String
   user       User?
   supervisor Supervisor?
@@ -24,8 +24,8 @@ model Role {
 }
 
 model Operation {
-  id         Int          @id @default(autoincrement())
-  name       String
+  id           Int          @id @default(autoincrement())
+  name         String
   capabilities Capability[]
 }
 
@@ -39,14 +39,14 @@ model Capability {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   residence String
-  account   Account   @relation(fields: [accountId], references: [id])
-  role      Role      @relation(fields: [roleId], references: [id])
-  node      Node      @relation(fields: [nodeId], references: [id])
-  accountId Int       @unique
+  account   Account  @relation(fields: [accountId], references: [id])
+  role      Role     @relation(fields: [roleId], references: [id])
+  node      Node     @relation("DescribedBy", fields: [nodeId], references: [id])
+  accountId Int      @unique
   roleId    Int
-  nodeId    Int       @unique
+  nodeId    Int      @unique
   curator   Curator?
 }
 
@@ -61,21 +61,22 @@ enum Sex {
 }
 
 model Node {
-  id                Int       @id @default(autoincrement())
+  id                Int        @id @default(autoincrement())
   firstname         String?
   lastname          String?
   birthdate         DateTime?
   deathdate         DateTime?
   birthplace        String?
   deathplace        String?
-  sex               Sex
-  user              User?
+  sex               Sex?
+  user              User?      @relation("DescribedBy")
   motherId          Int?
-  mother            Node?     @relation("mother", fields: [motherId], references: [id])
-  motherHasChildren Node[]    @relation("mother")
+  mother            Node?      @relation("mother", fields: [motherId], references: [id])
+  motherHasChildren Node[]     @relation("mother")
   fatherId          Int?
-  father            Node?     @relation("father", fields: [fatherId], references: [id])
-  fatherHasChildren Node[]    @relation("father")
+  father            Node?      @relation("father", fields: [fatherId], references: [id])
+  fatherHasChildren Node[]     @relation("father")
+  documents         Document[]
 }
 
 model Curator {
@@ -99,4 +100,5 @@ model Supervisor {
 model Document {
   id   Int    @id @default(autoincrement())
   path String
+  node Node[]
 }
