@@ -1,0 +1,64 @@
+version: '3.1'
+
+services:
+
+    quiad_mysql_server:
+        build:
+            context: quiad_mysql_server
+        image: quiad_mysql_server
+        volumes:
+            # - ./database/dump/:/docker-entrypoint-initdb.d/
+            - quiad-database-volume:/var/lib/mysql
+        restart: on-failure
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: mysql
+            MYSQL_USER: quiad
+            MYSQL_PASSWORD: quiad
+        networks:
+            - database_network
+        ports:
+            - '3306:3306'
+        healthcheck:
+            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+            timeout: 20s
+            retries: 10
+
+    # phpmyadmin:
+    #     build:
+    #         context: phpmyadmin
+    #     image: quiad_phpmyadmin
+    #     restart: unless-stopped
+    #     networks:
+    #         - main_network
+    #         - database_network
+    #     depends_on:
+    #         - quiad_mysql_server
+    #     ports:
+    #         - '8080:80'
+    #     environment:
+    #         PMA_ABSOLUTE_URI: "http://localhost:8080/phpmyadmin/"
+    #         PMA_HOST: localhost
+    #         UPLOAD_LIMIT: 5M
+    #         MYSQL_USER: root
+    #         MYSQL_PASSWORD: root
+    #         MYSQL_ROOT_PASSWORD: root
+
+    quiad_rest_api_server:
+        build:
+            context: quiad_rest_api_server
+        image: quiad_rest_api_server
+        restart: unless-stopped
+        networks:
+            - database_network
+        depends_on:
+            - quiad_mysql_server
+        ports:
+            - '8080:80'
+
+networks:
+    main_network:
+    database_network:
+
+volumes:
+    quiad-database-volume:

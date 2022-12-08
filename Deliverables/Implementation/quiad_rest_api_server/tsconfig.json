@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "sourceMap": true,
+    "baseUrl": "src",
+    "rootDir": "src",
     "sourceRoot": "src",
     "outDir": "dist",
     "strict": true,

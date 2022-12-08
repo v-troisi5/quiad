@@ -26,6 +26,6 @@ app.use(morgan("dev"))
 app.use(new AccountRoute().app);
 app.use(new TreeRoute().app);
 
-app.listen(8080, () => {
-    console.info("Server is running on port ${8080}");
+app.listen(80, () => {
+    console.info(`Server is running on port ${80}`);
 });

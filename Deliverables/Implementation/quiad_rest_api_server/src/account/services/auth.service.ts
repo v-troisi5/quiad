@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { AccountController } from "../controllers/account.controller";
+import bcrypt from "bcrypt";
 
 export class AuthService {
 
@@ -9,7 +10,16 @@ export class AuthService {
         const username = req.body.username;
         try {
             const user = await this.accountController.findByUsername(username);
-            res.json(user);
+            if(user) {
+                const password = req.body.password;
+                if(bcrypt.compareSync(password, user.password!)) {
+                    res.json(user);
+                } else {
+                    res.status(401).json(null);
+                }
+            } else {
+                res.status(401).json(null);
+            }
         } catch(err) {
             console.log(err);
             res.json(err);

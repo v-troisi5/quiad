@@ -6,3 +6,8 @@
 
 - npx prisma migrate dev --name *migration name*
 
+### Sincronizzazione delle migrazioni con il database
+
+- npx prisma db push
+- npx prisma db seed
+
