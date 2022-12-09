@@ -1,8 +1,9 @@
 import express from "express";
-import { AccountRoute } from "./account/routes/account.route";
 import morgan from "morgan";
 import bodyParser from "body-parser";
+import { AccountRoute } from "./account";
 import { TreeRoute } from "./tree";
+import { DocumentRoute } from "./document";
 
 const app = express();
 
@@ -21,10 +22,11 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(morgan("dev"))
+app.use(morgan("dev"));
 
 app.use(new AccountRoute().app);
 app.use(new TreeRoute().app);
+app.use(new DocumentRoute().app);
 
 app.listen(80, () => {
     console.info(`Server is running on port ${80}`);

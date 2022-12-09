@@ -10,5 +10,8 @@
       "esnext"
     ],
     "esModuleInterop": true
-  }
+  },
+  "exclude": [
+    "prisma"
+  ]
 }

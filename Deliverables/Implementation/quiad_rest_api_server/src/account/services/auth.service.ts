@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { AccountController } from "../controllers/account.controller";
 import bcrypt from "bcrypt";
+import { sign } from "jsonwebtoken";
 
 export class AuthService {
 
@@ -13,7 +14,10 @@ export class AuthService {
             if(user) {
                 const password = req.body.password;
                 if(bcrypt.compareSync(password, user.password!)) {
-                    res.json(user);
+                    res.json({
+                        user: user,
+                        token: sign(user, "secret")
+                    });
                 } else {
                     res.status(401).json(null);
                 }

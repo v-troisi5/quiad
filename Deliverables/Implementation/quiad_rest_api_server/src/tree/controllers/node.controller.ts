@@ -34,4 +34,45 @@ export class NodeController {
         return updatedNode as Node;
     }
 
+    public async deleteNode(id: number): Promise<Node> {
+        const deletedNode = await this.prisma.node.delete({
+            where: {
+                id: id
+            }
+        });
+        return deletedNode as Node;
+    }
+
+    public async bindDocument(node: number, document: number): Promise<Node> {
+        const bindedNode = await this.prisma.node.update({
+            where: {
+                id: node
+            },
+            data: {
+                documents: {
+                    connect: {
+                        id: document
+                    }
+                }
+            }
+        });
+        return bindedNode as Node;
+    }
+
+    public async unbindDocument(node: number, document: number): Promise<Node> {
+        const unbindedNode = await this.prisma.node.update({
+            where: {
+                id: node
+            },
+            data: {
+                documents: {
+                    disconnect: {
+                        id: document
+                    }
+                }
+            }
+        });
+        return unbindedNode as Node;
+    }
+
 }
