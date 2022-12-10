@@ -26,7 +26,7 @@ app.use(morgan("dev"));
 
 app.use(new AccountRoute().app);
 app.use(new TreeRoute().app);
-app.use(new DocumentRoute().app);
+app.use("/documents", new DocumentRoute().app);
 
 app.listen(80, () => {
     console.info(`Server is running on port ${80}`);

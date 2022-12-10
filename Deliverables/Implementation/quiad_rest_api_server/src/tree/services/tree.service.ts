@@ -6,7 +6,11 @@ export class TreeService {
 
     private nodeController = new NodeController();
 
-    // TODO: Definire e inserire metodo di lettura dell'intero albero genealogico dell'utente
+    public async getNodes(req: Request, res: Response, next: NextFunction) {
+        const owner = parseInt(req.params.owner);
+        const nodes = await this.nodeController.getNodes(owner);
+        res.json(nodes);
+    }
 
     public async createNode(req: Request, res: Response, next: NextFunction): Promise<void> {
         const node = new Node(req.body.node);
@@ -20,14 +24,16 @@ export class TreeService {
     }
 
     public async updateNode(req: Request, res: Response, next: NextFunction): Promise<void> {
-        const id = req.params.id;
+        const id = parseInt(req.params.id);
         const node = new Node(req.body.node);
-        throw new Error("Not implemented yet");
+        const updatedNode = await this.nodeController.updateNode(id, node);
+        res.json(updatedNode);
     }
-    
+
     public async deleteNode(req: Request, res: Response, next: NextFunction): Promise<void> {
-        const id =req.params.id;
-        throw new Error("Not implemented yet");
+        const id = parseInt(req.params.id);
+        const deletedNode = await this.nodeController.deleteNode(id);
+        res.json(deletedNode);
     }
 
     public async bindDocument(req: Request, res: Response, next: NextFunction): Promise<void> {

@@ -1,12 +1,18 @@
 import { Document, PrismaClient } from "@prisma/client";
+import { DocumentFilter } from "../utils/document.filter";
 
 export class DocumentController {
 
     private prisma = new PrismaClient();
 
-    public async findDocuments(): Promise<Document[]> {
+    public async findDocuments(filter: DocumentFilter): Promise<Document[]> {
         const documents = await this.prisma.document.findMany({
-            // TODO: usare i filtri specificati
+            where: {
+                retrievalDate: filter.retrievalDate,
+                retrievalPlace: filter.retrievalPlace,
+                originDate: filter.originDate,
+                originPlace: filter.originPlace,
+            }
         });
         return documents as Document[];
     }
@@ -16,16 +22,6 @@ export class DocumentController {
             data: document
         });
         return createdDocument;
-    }
-
-    public async updateDocument(id: number, document: Document): Promise<Document> {
-        const updateDocument = await this.prisma.document.update({
-            where: {
-                id: id
-            },
-            data: document
-        });
-        return updateDocument;
     }
 
     // TODO: Aggiungere approvazione documento

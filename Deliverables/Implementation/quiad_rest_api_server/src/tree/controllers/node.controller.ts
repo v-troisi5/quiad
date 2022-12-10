@@ -5,6 +5,32 @@ export class NodeController {
 
     private prisma: PrismaClient = new PrismaClient();
 
+    public async getNodes(owner: number): Promise<Node[]> {
+        const nodes = await this.prisma.node.findMany({
+            where: {
+                ownerId: owner
+            },
+            select: {
+                id: true,
+                firstname: true,
+                lastname: true,
+                birthdate: true,
+                birthplace: true,
+                deathdate: true,
+                deathplace: true,
+                documents: {
+                    select: {
+                        id: true,
+                    }
+                },
+                fatherId: true,
+                mother: true,
+                ownerId: true
+            }
+        });
+        return nodes as Node[];
+    }
+
     public async createNode(node: Node): Promise<Node> {
         const createdNode = await this.prisma.node.create({
             data: node,

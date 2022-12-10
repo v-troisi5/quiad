@@ -48,6 +48,7 @@ model User {
   roleId    Int
   nodeId    Int      @unique
   curator   Curator?
+  tree      Node[]   @relation("owner")
 }
 
 model Category {
@@ -77,6 +78,8 @@ model Node {
   father            Node?      @relation("father", fields: [fatherId], references: [id])
   fatherHasChildren Node[]     @relation("father")
   documents         Document[]
+  ownerId           Int?
+  owner             User?       @relation("owner", fields: [ownerId], references: [id])
 }
 
 model Curator {
@@ -98,7 +101,12 @@ model Supervisor {
 }
 
 model Document {
-  id   Int    @id @default(autoincrement())
-  path String
-  node Node[]
+  id              Int    @id @default(autoincrement())
+  nome            String
+  retrievalDate   DateTime
+  retrievalPlace  String
+  originDate      DateTime
+  originPlace     String
+  path            String
+  node            Node[]
 }

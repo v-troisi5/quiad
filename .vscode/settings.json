@@ -2,5 +2,7 @@
     "files.exclude": {
         "assets": true,
         "Deliverables/*.pdf": true
-    }
+    },
+    "terminal.integrated.tabs.title": "Quiad ${process}",
+    "terminal.integrated.cwd": "Deliverables/Implementation"
 }

@@ -7,48 +7,42 @@ export class AccountController {
     private prisma: PrismaClient = new PrismaClient();
 
     public async findByUsername(username: string): Promise<Account> {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const account = await this.prisma.account.findUnique({
-                    where: {
-                        username: username,
-                    },
+        const account = await this.prisma.account.findUnique({
+            where: {
+                username: username,
+            },
+            select: {
+                id: true,
+                email: true,
+                username: true,
+                password: true,
+                user: {
                     select: {
                         id: true,
-                        email: true,
-                        username: true,
-                        password: true,
-                        user: {
+                        residence: true,
+                        role: {
                             select: {
                                 id: true,
-                                residence: true,
-                                role: {
-                                    select: {
-                                        id: true,
-                                        name: true
-                                    }
-                                },
-                                node: {
-                                    select: {
-                                        id: true,
-                                        firstname: true,
-                                        lastname: true,
-                                        birthdate: true,
-                                        birthplace: true,
-                                        sex: true
-                                    }
-                                },
-                                curator: true
+                                name: true
                             }
                         },
-                        supervisor: true,
+                        node: {
+                            select: {
+                                id: true,
+                                firstname: true,
+                                lastname: true,
+                                birthdate: true,
+                                birthplace: true,
+                                sex: true
+                            }
+                        },
+                        curator: true
                     }
-                });
-                resolve(account as Account);
-            } catch(err) {
-                reject(err);
+                },
+                supervisor: true,
             }
         });
+        return account as Account;
     }
 
     public async createAccount(account: any): Promise<Account> {
@@ -67,11 +61,11 @@ export class AccountController {
                         },
                         node: {
                             create: {
-                                firstname: account.node.firstname,
-                                lastname: account.node.lastname,
-                                birthdate: account.node.birthdate,
-                                birthplace: account.node.birthplace,
-                                sex: account.node.sex
+                                firstname: account.user.node.firstname,
+                                lastname: account.user.node.lastname,
+                                birthdate: account.user.node.birthdate,
+                                birthplace: account.user.node.birthplace,
+                                sex: account.user.node.sex
                             }
                         }
                     }

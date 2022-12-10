@@ -9,24 +9,36 @@ export class AuthService {
 
     public async login(req: Request, res: Response, next: NextFunction): Promise<void> {
         const username = req.body.username;
-        try {
-            const user = await this.accountController.findByUsername(username);
-            if(user) {
-                const password = req.body.password;
-                if(bcrypt.compareSync(password, user.password!)) {
-                    res.json({
-                        user: user,
-                        token: sign(user, "secret")
-                    });
+        if(username) {                              // PRE: Verifico che lo username esista
+            try {
+                const user = await this.accountController.findByUsername(username);
+                if(user) {
+                    const password = req.body.password;
+                    if(password) {                  // PRE: Verifico che la password esista
+                        if(bcrypt.compareSync(password, user.password!)) {
+                            const _ = {
+                                ...user,
+                                password: undefined // POST: Nascondo la password
+                            }
+                            res.json({
+                                user: _,
+                                token: sign(_, "secret")
+                            });
+                        } else {
+                            res.status(401).json(null);
+                        }
+                    } else {
+                        res.status(400).json(null);
+                    }
                 } else {
                     res.status(401).json(null);
                 }
-            } else {
-                res.status(401).json(null);
+            } catch(err) {
+                console.log(err);
+                res.json(err);
             }
-        } catch(err) {
-            console.log(err);
-            res.json(err);
+        } else {
+            res.status(400).json(null);
         }
     }
 

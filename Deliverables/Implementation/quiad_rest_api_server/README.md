@@ -9,7 +9,7 @@ Di seguito sono riportati una serie di comandi utili da utilizzare per aggiornar
 Una volta apportate delle modifiche allo schema Prisma, è possibile generare una nuova migrazione lanciando il seguente comando:
 
 ```
-npx prisma migrate dev --name *migration name
+npx prisma migrate dev --name *migration name*
 ```
 
 ### Sincronizzazione delle migrazioni con il database
