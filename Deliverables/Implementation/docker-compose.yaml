@@ -24,25 +24,6 @@ services:
             timeout: 20s
             retries: 10
 
-    # phpmyadmin:
-    #     build:
-    #         context: phpmyadmin
-    #     image: quiad_phpmyadmin
-    #     restart: unless-stopped
-    #     networks:
-    #         - main_network
-    #         - database_network
-    #     depends_on:
-    #         - quiad_mysql_server
-    #     ports:
-    #         - '8080:80'
-    #     environment:
-    #         PMA_ABSOLUTE_URI: "http://localhost:8080/phpmyadmin/"
-    #         PMA_HOST: localhost
-    #         UPLOAD_LIMIT: 5M
-    #         MYSQL_USER: root
-    #         MYSQL_PASSWORD: root
-    #         MYSQL_ROOT_PASSWORD: root
 
     quiad_rest_api_server:
         build:

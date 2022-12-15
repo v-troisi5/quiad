@@ -1,0 +1,7 @@
+{
+  "name": "ionic_quiad_client",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
