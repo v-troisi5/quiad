@@ -11,17 +11,17 @@ export class AuthService {
         const username = req.body.username;
         if(username) {                              // PRE: Verifico che lo username esista
             try {
-                const user = await this.accountController.findByUsername(username);
-                if(user) {
+                const account = await this.accountController.findByUsername(username);
+                if(account) {
                     const password = req.body.password;
                     if(password) {                  // PRE: Verifico che la password esista
-                        if(bcrypt.compareSync(password, user.password!)) {
+                        if(bcrypt.compareSync(password, account.password!)) {
                             const _ = {
-                                ...user,
+                                ...account,
                                 password: undefined // POST: Nascondo la password
                             }
                             res.json({
-                                user: _,
+                                account: _,
                                 token: sign(_, "secret")
                             });
                         } else {

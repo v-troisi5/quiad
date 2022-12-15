@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Accedi a Quiad</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="ion-align-self-center" size-lg="5" size-md="8" size-xs="12">
+        <div class="ion-text-center ion-padding">
+          <img src="assets/quiad_family_tree-logo-transparent-bg.png" width="130">
+          <div style="height: 20px;"></div>
+          <form [formGroup]="signinForm" (ngSubmit)="onSubmit(signinForm.value)">
+            <ion-item lines="none" color="light">
+              <ion-label position="floating">Username</ion-label>
+              <ion-input placeholder="Inserisci il tuo username" formControlName="username" name="username" type="text"></ion-input>
+            </ion-item>
+            <ion-item lines="none" color="light">
+              <ion-label position="floating">Password</ion-label>
+              <ion-input placeholder="Inserisci la tua password" formControlName="password" name="password" type="password"></ion-input>
+            </ion-item>
+            <ion-item lines="none" color="light">
+              <ion-checkbox formControlName="ricordati_di_me" name="ricordati_di_me"></ion-checkbox>
+              <ion-label>Ricordati di me</ion-label>
+            </ion-item>
+            <ion-button expand="block" type="submit" [disabled]="loading || !signinForm.valid">
+              Accedi
+            </ion-button>
+            <p><a href="/register">Non hai un account? Registrati</a></p>
+          </form>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
