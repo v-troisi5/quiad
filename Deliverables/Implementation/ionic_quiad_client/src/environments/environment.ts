@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   apiUrl: "http://localhost:80",
   paths: {
-    login: "/login"
+    login: "/login",
+    register: "/register"
   }
 };
 

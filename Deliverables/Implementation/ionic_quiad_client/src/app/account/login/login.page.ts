@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { Subscription } from "rxjs";
-import { LoginCredentials } from '../models/LoginCredentials';
+import { IAccount } from '../models/IAccount';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -12,8 +13,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginPage implements OnInit {
 
-  private queryParamsSubscription: Subscription;
-  username?: string;
+  private queryParamsSubscription?: Subscription;
   signinForm: FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
@@ -23,24 +23,40 @@ export class LoginPage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
+    private toastController: ToastController
   ) {
-    this.queryParamsSubscription = activatedRoute.queryParams.subscribe(queryParams => {
-      this.username = queryParams["username"];
-    });
   }
-
+  
   ngOnInit() {
+    this.queryParamsSubscription = this.activatedRoute.queryParams.subscribe(queryParams => {
+      this.signinForm.get("username")?.setValue(queryParams["username"]);
+    });
   }
 
   ngOnDestroy() {
-    this.queryParamsSubscription.unsubscribe();
+    this.queryParamsSubscription?.unsubscribe();
   }
 
-  onSubmit(utente: LoginCredentials) {
-    this.authService.login(utente).subscribe(loginAccount => {
-      console.log(loginAccount);
-    });
+  onSubmit(credentials: IAccount) {
+    this.loading = true;
+    this.authService.login(credentials).subscribe({
+      next: (account) => {
+        this.router.navigate(["/dashboard"]);
+      },
+      error: (error) => {
+        this.toastController.create({
+          duration: 3000,
+          color: "danger",
+          message: error.message,
+        }).then(toast => {
+          toast.present();
+        });
+      },
+    }).add(() => {
+      this.loading = false;
+    })
   }
 
 }

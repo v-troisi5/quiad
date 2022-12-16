@@ -21,8 +21,10 @@ export class AuthService {
                                 password: undefined // POST: Nascondo la password
                             }
                             res.json({
-                                account: _,
-                                token: sign(_, "secret")
+                                account: {
+                                    ..._,
+                                    token: sign(_, "secret")
+                                },
                             });
                         } else {
                             res.status(401).json(null);
