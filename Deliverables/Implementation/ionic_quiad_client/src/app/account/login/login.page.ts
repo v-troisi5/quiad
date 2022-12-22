@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { Subscription } from "rxjs";
 import { IAccount } from '../models/IAccount';
 import { AuthService } from '../services/auth.service';
@@ -24,12 +24,16 @@ export class LoginPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
-    private router: Router,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private navController: NavController
   ) {
   }
   
   ngOnInit() {
+    const account = this.authService.Account;
+    if(account) {
+      this.navController.navigateRoot("/dashboard");
+    }
     this.queryParamsSubscription = this.activatedRoute.queryParams.subscribe(queryParams => {
       this.signinForm.get("username")?.setValue(queryParams["username"]);
     });
@@ -43,7 +47,7 @@ export class LoginPage implements OnInit {
     this.loading = true;
     this.authService.login(credentials).subscribe({
       next: (account) => {
-        this.router.navigate(["/dashboard"]);
+        this.navController.navigateRoot("/dashboard");
       },
       error: (error) => {
         this.toastController.create({
