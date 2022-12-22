@@ -1,9 +1,36 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>dashboard</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Dashboard</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-item lines="none">
+    <ion-title>Nodi dell'albero</ion-title>
+  </ion-item>
+  <ion-list>
+    <div *ngFor="let node of nodes">
+      <ion-item lines="none">
+        <ion-label>
+          <ion-title>{{ node.firstname }} {{ node.lastname }}</ion-title>
+          <!-- {{ node | json }} -->
+        </ion-label>
+        <ion-buttons>
+          <ion-button color="green">
+            <ion-icon name="pencil"></ion-icon>
+          </ion-button>
+          <ion-button color="danger">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+      <ion-item>
+        <ion-buttons>
+          <ion-button color="primary">
+            <ion-icon name="document"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </div>
+  </ion-list>
 </ion-content>

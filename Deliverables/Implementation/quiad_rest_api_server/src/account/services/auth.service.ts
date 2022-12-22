@@ -37,7 +37,7 @@ export class AuthService {
                 }
             } catch(err) {
                 console.log(err);
-                res.json(err);
+                res.status(500).json(err);
             }
         } else {
             res.status(400).json(null);

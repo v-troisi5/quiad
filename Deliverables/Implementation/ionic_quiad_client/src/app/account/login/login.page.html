@@ -14,11 +14,11 @@
           <form [formGroup]="signinForm" (ngSubmit)="onSubmit(signinForm.value)">
             <ion-item lines="none" color="light">
               <ion-label position="floating">Username</ion-label>
-              <ion-input placeholder="Inserisci il tuo username" formControlName="username" name="username" type="text"></ion-input>
+              <ion-input autocomplete="username" placeholder="Inserisci il tuo username" formControlName="username" name="username" type="text"></ion-input>
             </ion-item>
             <ion-item lines="none" color="light">
               <ion-label position="floating">Password</ion-label>
-              <ion-input placeholder="Inserisci la tua password" formControlName="password" name="password" type="password"></ion-input>
+              <ion-input autocomplete="password" placeholder="Inserisci la tua password" formControlName="password" name="password" type="password"></ion-input>
             </ion-item>
             <ion-item lines="none" color="light">
               <ion-checkbox formControlName="ricordati_di_me" name="ricordati_di_me"></ion-checkbox>

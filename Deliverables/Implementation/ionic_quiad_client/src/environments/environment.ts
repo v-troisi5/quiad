@@ -7,7 +7,8 @@ export const environment = {
   apiUrl: "http://localhost:80",
   paths: {
     login: "/login",
-    register: "/register"
+    register: "/register",
+    nodes: "/nodes"
   }
 };
 
