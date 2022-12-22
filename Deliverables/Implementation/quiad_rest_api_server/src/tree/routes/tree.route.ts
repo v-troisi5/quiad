@@ -10,16 +10,16 @@ export class TreeRoute extends Route {
 
     constructor() {
         super();
-        this.app.post("/node", (req, res, next) => {
+        this.app.post("/", (req, res, next) => {
             return this.treeService.createNode(req, res, next);
         });
-        this.app.patch("/node/:id", (req, res, next) => {
+        this.app.patch("/:id", (req, res, next) => {
             return this.treeService.updateNode(req, res, next);
         });
-        this.app.delete("/node/:id", (req, res, next) => {
+        this.app.delete("/:id", (req, res, next) => {
             return this.treeService.updateNode(req, res, next);
         });
-        this.app.get("/node/:owner", (req, res, next) => {
+        this.app.get("/:owner", (req, res, next) => {
             return this.treeService.getNodes(req, res, next);
         });
         // TODO: Esporre binding documento

@@ -24,8 +24,8 @@ app.use((req, res, next) => {
 
 app.use(morgan("dev"));
 
-app.use(new AccountRoute().app);
-app.use(new TreeRoute().app);
+app.use("/", new AccountRoute().app);
+app.use("/nodes", new TreeRoute().app);
 app.use("/documents", new DocumentRoute().app);
 
 app.listen(80, () => {
