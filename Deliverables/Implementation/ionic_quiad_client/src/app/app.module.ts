@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http'
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app-routing.module'
 
+import { HttpClientTestingModule } from '@angular/common/http/testing'
+
 @NgModule({
   declarations: [AppComponent],
   imports: [

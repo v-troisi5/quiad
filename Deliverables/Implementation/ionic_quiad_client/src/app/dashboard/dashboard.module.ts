@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { DashboardPageRoutingModule } from './dashboard-routing.module';
 
 import { DashboardPage } from './dashboard.page';
+import { CreateNodeModalComponent } from './create-node-modal/create-node-modal.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,9 @@ import { DashboardPage } from './dashboard.page';
     IonicModule,
     DashboardPageRoutingModule
   ],
-  declarations: [DashboardPage]
+  declarations: [
+    DashboardPage,
+    CreateNodeModalComponent
+  ],
 })
 export class DashboardPageModule {}

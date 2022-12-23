@@ -14,7 +14,7 @@ import { AuthService } from '../services/auth.service';
 export class LoginPage implements OnInit {
 
   private queryParamsSubscription?: Subscription;
-  signinForm: FormGroup = new FormGroup({
+  public signinForm: FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
     ricordati_di_me: new FormControl(false)

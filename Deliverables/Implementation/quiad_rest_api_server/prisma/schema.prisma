@@ -19,24 +19,26 @@ model Account {
 model Role {
   id           Int          @id @default(autoincrement())
   name         String       @unique
-  capabilities Capability[]
+  // capabilities Capability[]
+  operations   Operation[]
   user         User[]
 }
 
 model Operation {
   id           Int          @id @default(autoincrement())
-  name         String
-  capabilities Capability[]
+  name         String       @unique
+  // capabilities Capability[]
+  roles        Role[]
 }
 
-model Capability {
-  operationId Int
-  operation   Operation @relation(fields: [operationId], references: [id])
-  roleId      Int
-  role        Role      @relation(fields: [roleId], references: [id])
+// model Capability {
+//   operationId Int
+//   operation   Operation @relation(fields: [operationId], references: [id])
+//   roleId      Int
+//   role        Role      @relation(fields: [roleId], references: [id])
 
-  @@id([operationId, roleId])
-}
+//   @@id([operationId, roleId])
+// }
 
 model User {
   id        Int      @id @default(autoincrement())

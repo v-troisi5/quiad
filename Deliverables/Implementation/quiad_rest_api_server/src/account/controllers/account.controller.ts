@@ -23,7 +23,13 @@ export class AccountController {
                         role: {
                             select: {
                                 id: true,
-                                name: true
+                                name: true,
+                                operations: {
+                                    select: {
+                                        id: true,
+                                        name: true
+                                    }
+                                }
                             }
                         },
                         node: {
@@ -33,7 +39,9 @@ export class AccountController {
                                 lastname: true,
                                 birthdate: true,
                                 birthplace: true,
-                                sex: true
+                                sex: true,
+                                fatherId: true,
+                                motherId: true
                             }
                         },
                         curator: true

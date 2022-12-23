@@ -9,6 +9,24 @@
     <ion-title>Nodi dell'albero</ion-title>
   </ion-item>
   <ion-list>
+    <ion-item color="light" *ngIf="userNode">
+      <ion-icon *ngIf="userNode.sex == 'MALE'" name="male-outline"></ion-icon>
+      <ion-icon *ngIf="userNode.sex == 'FEMALE'" name="female-outline"></ion-icon>
+      <ion-label>
+        <ion-title>
+          {{ userNode.firstname }}
+          {{ userNode.lastname }}
+        </ion-title>
+      </ion-label>
+      <ion-buttons>
+        <ion-button title="Aggiungi padre" [disabled]="userNode.fatherId" (click)="presentCreateNodeModal()">
+          <ion-icon name="man-outline"></ion-icon>
+        </ion-button>
+        <ion-button title="Aggiungi madre" [disabled]="userNode.motherId" (click)="presentCreateNodeModal()">
+          <ion-icon name="woman-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
     <div *ngFor="let node of nodes">
       <ion-item lines="none">
         <ion-label>
@@ -16,11 +34,11 @@
           <!-- {{ node | json }} -->
         </ion-label>
         <ion-buttons>
-          <ion-button color="green">
-            <ion-icon name="pencil"></ion-icon>
+          <ion-button title="Aggiungi padre" [disabled]="node.fatherId" (click)="presentCreateNodeModal()">
+            <ion-icon name="man-outline"></ion-icon>
           </ion-button>
-          <ion-button color="danger">
-            <ion-icon name="trash"></ion-icon>
+          <ion-button title="Aggiungi madre" [disabled]="node.motherId" (click)="presentCreateNodeModal()">
+            <ion-icon name="woman-outline"></ion-icon>
           </ion-button>
         </ion-buttons>
       </ion-item>

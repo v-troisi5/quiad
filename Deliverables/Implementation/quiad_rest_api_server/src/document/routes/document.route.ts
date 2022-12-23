@@ -15,10 +15,10 @@ export class DocumentRoute extends Route {
 
     constructor() {
         super();
-        this.app.get("/",  this.authMiddleware.filter, middleware("1 hour"), (req, res, next) => {
+        this.app.get("/",  this.authMiddleware.filter("document:search"), middleware("1 hour"), (req, res, next) => {
             this.documentService.findDocuments(req, res, next);
         });
-        this.app.post("/", (req, res, next) => {
+        this.app.post("/", this.authMiddleware.filter("document:create"), (req, res, next) => {
             this.documentService.createDocument(req, res, next);
         });
     }

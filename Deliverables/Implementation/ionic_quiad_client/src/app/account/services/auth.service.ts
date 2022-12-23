@@ -22,6 +22,7 @@ export class AuthService {
           ...account.user,
           node: new Node(account.user?.node),
         }),
+        token: token
       });
       this.account = _;
     }

@@ -3,19 +3,37 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 ;(async () => {
-  await prisma.operation.createMany({
-    data: [
-      {
-        name: 'node:create',
-      },
-      {
-        name: 'node:read',
-      },
-    ],
-  });
   await prisma.role.create({
     data: {
       name: 'standard',
+      operations:{
+        connectOrCreate: [
+          {
+            create: {
+              name: "node:read"
+            },
+            where: {
+              name: "node:read"
+            }
+          },
+          {
+            create: {
+              name: "node:create"
+            },
+            where: {
+              name: "node:create"
+            }
+          },
+          {
+            create: {
+              name: "document:search"
+            },
+            where: {
+              name: "document:search"
+            }
+          }
+        ]
+      } 
     },
   })
   await prisma.role.create({

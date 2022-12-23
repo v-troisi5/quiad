@@ -24,7 +24,7 @@ export class NodeController {
                     }
                 },
                 fatherId: true,
-                mother: true,
+                motherId: true,
                 ownerId: true
             }
         });
