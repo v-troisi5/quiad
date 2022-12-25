@@ -25,7 +25,8 @@ export class NodeController {
                 },
                 fatherId: true,
                 motherId: true,
-                ownerId: true
+                ownerId: true,
+                sex: true
             }
         });
         return nodes as Node[];

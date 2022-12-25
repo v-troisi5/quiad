@@ -47,7 +47,13 @@ export class AuthService {
       )
   }
 
-  public logout() {}
+  public logout() {
+    return new Promise<void>((resolve, reject) => {
+      const token = localStorage.removeItem("token");
+      this.account = undefined;
+      resolve();
+    });
+  }
 
   private account?: Account;
   public get Account() {

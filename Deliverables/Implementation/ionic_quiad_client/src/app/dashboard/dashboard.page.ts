@@ -42,4 +42,12 @@ export class DashboardPage implements OnInit {
         modal.present()
       })
   }
+
+  public logout() {
+    this.authService.logout()
+      .then(() => {
+        this.navController.navigateRoot("/login");
+      });
+  }
+
 }
