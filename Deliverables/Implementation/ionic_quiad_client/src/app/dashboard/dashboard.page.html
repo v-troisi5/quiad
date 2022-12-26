@@ -2,6 +2,9 @@
   <ion-toolbar color="primary">
     <ion-title>Dashboard</ion-title>
     <ion-buttons slot="end">
+      <ion-button routerLink="/document">
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
       <ion-button (click)="logout()">Logout</ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -36,7 +39,6 @@
         <ion-icon *ngIf="node.sex == 'FEMALE'" name="female-outline"></ion-icon>
         <ion-label>
           <ion-title>{{ node.firstname }} {{ node.lastname }}</ion-title>
-          <!-- {{ node | json }} -->
         </ion-label>
         <ion-buttons>
           <ion-button title="Aggiungi padre" [disabled]="node.fatherId" (click)="presentCreateNodeModal()">
