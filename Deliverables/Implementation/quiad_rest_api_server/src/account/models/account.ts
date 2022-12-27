@@ -1,3 +1,4 @@
+import { User } from "./user";
 
 export class Account {
 
@@ -5,5 +6,6 @@ export class Account {
     public readonly email?: string;
     public readonly username?: string;
     public readonly password?: string;
+    public readonly user?: User;
 
 }

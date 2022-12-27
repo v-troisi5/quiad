@@ -1,10 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import { Account } from "../models/account";
 
+import { prisma } from "../../utils/clients";
 
 export class AccountController {
 
-    private prisma: PrismaClient = new PrismaClient();
+    private prisma: PrismaClient = prisma;
 
     public async findByUsername(username: string): Promise<Account> {
         const account = await this.prisma.account.findUnique({
@@ -106,7 +107,7 @@ export class AccountController {
                 },
             }
         });
-        return result;
+        return result as Account;
     }
 
 }

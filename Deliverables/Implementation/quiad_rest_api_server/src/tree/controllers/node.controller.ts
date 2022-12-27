@@ -1,9 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import { prisma } from "../../utils/clients";
 import { Node } from "../models/Node";
 
 export class NodeController {
 
-    private prisma: PrismaClient = new PrismaClient();
+    private prisma: PrismaClient = prisma
 
     public async getNodes(owner: number): Promise<Node[]> {
         const nodes = await this.prisma.node.findMany({

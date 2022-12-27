@@ -22,4 +22,20 @@ export class Node implements INode {
         this.sex = node?.sex;
     }
 
+    public bindDocument(document: Document) {
+        throw new Error("Unimplemented");
+    }
+
+    public unbindDocument(document: Document) {
+        throw new Error("Unimplemented");
+    }
+
+    public getDescentants(): Node[] {
+        throw new Error("Unimplemented");
+    }
+
+    public getBoundDocuments(): Document[] {
+        throw new Error("Unimplemented");
+    }
+
 }

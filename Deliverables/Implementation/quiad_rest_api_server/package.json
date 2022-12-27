@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "type": "commonjs",
   "description": "Server REST API della piattaforma Quiad, dedicata alla creazione e alla gestione di alberi genealogici e documentazione storica",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "jest dist --verbose",
     "start": "nodemon ."
   },
   "keywords": [
@@ -27,10 +27,11 @@
     "@types/apicache": "^1.6.1",
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.14",
+    "@types/jest": "^29.2.4",
     "@types/jsonwebtoken": "^8.5.9",
-    "@types/mocha": "^10.0.1",
     "@types/morgan": "^1.9.3",
-    "mocha": "^10.2.0",
+    "jest": "^29.3.1",
+    "jest-mock-extended": "^2.0.4",
     "nodemon": "^2.0.20",
     "prisma": "^4.9.0-dev.9",
     "ts-node": "^10.9.1",

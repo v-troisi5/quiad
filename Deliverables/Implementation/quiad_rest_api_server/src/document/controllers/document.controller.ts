@@ -1,9 +1,10 @@
-import { Document, PrismaClient } from "@prisma/client";
+import { Document } from "@prisma/client";
+import { prisma } from "../../utils/clients";
 import { DocumentFilter } from "../utils/document.filter";
 
 export class DocumentController {
 
-    private prisma = new PrismaClient();
+    private prisma = prisma
 
     public async findDocuments(filter: DocumentFilter): Promise<Document[]> {
         const documents = await this.prisma.document.findMany({
@@ -17,13 +18,11 @@ export class DocumentController {
         return documents as Document[];
     }
 
-    public async createDocument(document: Document): Promise<Document> {
+    public async createDocument(document: any): Promise<Document> {
         const createdDocument = await this.prisma.document.create({
             data: document
         });
         return createdDocument;
     }
-
-    // TODO: Aggiungere approvazione documento
 
 }
