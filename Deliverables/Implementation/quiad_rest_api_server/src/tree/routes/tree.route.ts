@@ -17,7 +17,7 @@ export class TreeRoute extends Route {
             return this.treeService.updateNode(req, res, next);
         });
         this.app.delete("/:id", this.authMiddleware.filter("node:delete"), (req, res, next) => {
-            return this.treeService.updateNode(req, res, next);
+            return this.treeService.deleteNode(req, res, next);
         });
         this.app.get("/:owner", this.authMiddleware.filter("node:read"), (req, res, next) => {
             return this.treeService.getNodes(req, res, next);

@@ -72,7 +72,7 @@ export class AccountController {
                             create: {
                                 firstname: account.user.node.firstname,
                                 lastname: account.user.node.lastname,
-                                birthdate: account.user.node.birthdate,
+                                birthdate: account.user.node.birthdate ? new Date(account.user.node.birthdate) : null,
                                 birthplace: account.user.node.birthplace,
                                 sex: account.user.node.sex
                             }

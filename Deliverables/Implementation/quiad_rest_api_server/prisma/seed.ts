@@ -26,6 +26,14 @@ const prisma = new PrismaClient()
           },
           {
             create: {
+              name: "node:update"
+            },
+            where: {
+              name: "node:update"
+            }
+          },
+          {
+            create: {
               name: "document:search"
             },
             where: {

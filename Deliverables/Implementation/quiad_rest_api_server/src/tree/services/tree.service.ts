@@ -32,8 +32,16 @@ export class TreeService {
 
     public async deleteNode(req: Request, res: Response, next: NextFunction): Promise<void> {
         const id = parseInt(req.params.id);
-        const deletedNode = await this.nodeController.deleteNode(id);
-        res.json(deletedNode);
+        try {
+            const deletedNode = await this.nodeController.deleteNode(id);
+            if(deletedNode == null) {
+                res.status(404).json(null);
+            } else {
+                res.json(deletedNode);
+            }
+        } catch(err) {
+            res.status(500).json(null);
+        }
     }
 
     public async bindDocument(req: Request, res: Response, next: NextFunction): Promise<void> {

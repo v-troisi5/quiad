@@ -40,7 +40,14 @@ export class NodeController {
                 id: true,
                 firstname: true,
                 lastname: true,
-                sex: true
+                sex: true,
+                fatherId: true,
+                motherId: true,
+                deathdate: true,
+                deathplace: true,
+                birthdate: true,
+                birthplace: true,
+                ownerId: true,
             }
         });
         return createdNode as Node;
@@ -56,19 +63,40 @@ export class NodeController {
                 id: true,
                 firstname: true,
                 lastname: true,
-                sex: true
+                sex: true,
+                fatherId: true,
+                motherId: true,
+                deathdate: true,
+                deathplace: true,
+                birthdate: true,
+                birthplace: true,
+                ownerId: true
             }
         });
         return updatedNode as Node;
     }
 
     public async deleteNode(id: number): Promise<Node> {
-        const deletedNode = await this.prisma.node.delete({
+        const node = await this.prisma.node.findUnique({
             where: {
                 id: id
             }
         });
-        return deletedNode as Node;
+        const { count } = await this.prisma.node.deleteMany({
+            where: {
+                id: id,
+                user: {
+                    id: {
+                        not: id
+                    }
+                }
+            }
+        });
+        console.log(node)
+        if(node && count == 0) {
+            throw new Error("Can't delete this node");
+        }
+        return node as Node;
     }
 
     public async bindDocument(node: number, document: number): Promise<Node> {
