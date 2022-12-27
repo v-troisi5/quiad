@@ -14,7 +14,7 @@ export class RegistrationService {
             res.json(account);
         } catch(err) {
             console.log(err);
-            res.json(err);
+            res.status(500).json(err);
         }
     }
 
