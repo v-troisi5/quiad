@@ -13,7 +13,7 @@ export class RegistrationService {
             const account = await this.accountController.createAccount(_);
             res.json(account);
         } catch(err) {
-            res.status(500).json(err);
+            res.status(500).json(null);
         }
     }
 

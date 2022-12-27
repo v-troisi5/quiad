@@ -5,20 +5,25 @@ export class AuthMiddleware {
 
     public filter(operation: string) {
         return function(req: Request, res: Response, next: NextFunction) {
-            const token = req.headers.authorization;
+            const bearer = req.headers.authorization;
+            const token = bearer?.split(" ")[1];
             if(token) {
-                const account: any = jwt.verify(token, "secret");
-                if(account) {
-                    const user = account.user;
-                    const role = user.role;
-                    const operations = role.operations;
-                    const isAllowed = operations.find((o: any) => o.name == operation);
-                    if(isAllowed) {
-                        next();
+                try {
+                    const account: any = jwt.verify(token, "secret");
+                    if(account) {
+                        const user = account.user;
+                        const role = user.role;
+                        const operations = role.operations;
+                        const isAllowed = operations.find((o: any) => o.name == operation);
+                        if(isAllowed) {
+                            next();
+                        } else {
+                            res.status(401).json(null);
+                        }
                     } else {
                         res.status(401).json(null);
                     }
-                } else {
+                } catch(err) {
                     res.status(401).json(null);
                 }
             } else {
