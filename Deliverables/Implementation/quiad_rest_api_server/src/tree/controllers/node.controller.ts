@@ -35,7 +35,7 @@ export class NodeController {
 
     public async createNode(node: Node): Promise<Node> {
         const createdNode = await this.prisma.node.create({
-            data: node,
+            data: node as any,
             select: {
                 id: true,
                 firstname: true,
@@ -48,7 +48,7 @@ export class NodeController {
 
     public async updateNode(id: number, node: Node): Promise<Node> {
         const updatedNode = await this.prisma.node.update({
-            data: node,
+            data: node as any,
             where: {
                 id: id
             },

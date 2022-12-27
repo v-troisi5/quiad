@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import { NextFunction, Request, Response } from "express";
 import { anyString } from "jest-mock-extended";
 import { prismaMock } from "../../utils/singleton";
@@ -45,7 +46,7 @@ describe("Authorization Service", () => {
             });
     });
 
-    it("Should authenticate an account with non valid password", () => {
+    it("Should not authenticate an account with non valid password", () => {
         prismaMock.account.findUnique.mockResolvedValue({
             id: 1,
             email: "test@quiad.net",
@@ -62,7 +63,7 @@ describe("Authorization Service", () => {
             });
     });
 
-    it("Should authenticate an account with non valid username", () => {
+    it("Should not authenticate an account with non valid username", () => {
         mockRequest.body.username = "daqh";
         mockRequest.body.password = "miapassword";
         return authService
@@ -70,6 +71,46 @@ describe("Authorization Service", () => {
             .then(() => {
                 expect(mockResponse.status).toBeCalledWith(401);
                 expect(mockResponse.json).toBeCalledWith(null);
+            });
+    });
+
+    it("Should not authenticate an account with empty username", () => {
+        mockRequest.body.username = undefined;
+        mockRequest.body.password = "miapassword";
+        return authService
+            .login(mockRequest as Request, mockResponse as Response, nextFunction)
+            .then(() => {
+                expect(mockResponse.status).toBeCalledWith(400);
+                expect(mockResponse.json).toBeCalledWith(null);
+            });
+    });
+
+    it("Should not authenticate an account with empty password", () => {
+        prismaMock.account.findUnique.mockResolvedValue({
+            id: 1,
+            email: "test@quiad.net",
+            username: "quiad",
+            password: "$2b$10$zlmPcYWRUYTF8PZw9MDib.Nx7r14Mx/YSkcFucyZwMtgBtA8AAMbK"
+        });
+        mockRequest.body.username = "daqh";
+        mockRequest.body.password = undefined;
+        return authService
+            .login(mockRequest as Request, mockResponse as Response, nextFunction)
+            .then(() => {
+                expect(mockResponse.status).toBeCalledWith(400);
+                expect(mockResponse.json).toBeCalledWith(null);
+            });
+    });
+
+    it("Should handle any unknown error", () => {
+        prismaMock.account.findUnique.mockRejectedValue(new Prisma.PrismaClientUnknownRequestError("Test Error", { clientVersion: "" }))
+        mockRequest.body.username = "daqh";
+        mockRequest.body.password = "miapassword";
+        return authService
+            .login(mockRequest as Request, mockResponse as Response, nextFunction)
+            .then(() => {
+                expect(mockResponse.status).toHaveBeenCalledWith(500);
+                expect(mockResponse.json).toHaveBeenCalledWith(null);
             });
     });
 

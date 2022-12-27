@@ -1,4 +1,5 @@
 import { Sex } from "@prisma/client";
+import { Document } from "../../document/models/Document";
 
 export class Node {
 
@@ -13,6 +14,7 @@ export class Node {
     public readonly sex?: Sex;
     public readonly fatherId?: number;
     public readonly motherId?: number;
+    public readonly documents?: Document[];
 
     public constructor(node: {
         id?: number,

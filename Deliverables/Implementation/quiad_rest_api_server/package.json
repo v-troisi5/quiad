@@ -5,7 +5,7 @@
   "description": "Server REST API della piattaforma Quiad, dedicata alla creazione e alla gestione di alberi genealogici e documentazione storica",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest dist --verbose",
+    "test": "jest dist --coverage --verbose",
     "start": "nodemon ."
   },
   "keywords": [

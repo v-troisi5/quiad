@@ -19,7 +19,7 @@ export class TreeService {
             const insertedNode = await this.nodeController.createNode(node);
             res.json(insertedNode);
         } catch (err) {
-            res.status(500).json(err);
+            res.status(500).json(null);
         }
     }
 
