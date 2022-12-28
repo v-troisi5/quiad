@@ -38,16 +38,21 @@ export class NodeController {
             data: node as any,
             select: {
                 id: true,
+                birthdate: true,
                 firstname: true,
                 lastname: true,
-                sex: true,
+                birthplace: true,
+                deathdate: true,
                 fatherId: true,
                 motherId: true,
-                deathdate: true,
                 deathplace: true,
-                birthdate: true,
-                birthplace: true,
                 ownerId: true,
+                sex: true,
+                documents: {
+                    select: {
+                        id: true
+                    }
+                }
             }
         });
         return createdNode as Node;
@@ -61,41 +66,32 @@ export class NodeController {
             },
             select: {
                 id: true,
+                birthdate: true,
                 firstname: true,
                 lastname: true,
-                sex: true,
+                birthplace: true,
+                deathdate: true,
                 fatherId: true,
                 motherId: true,
-                deathdate: true,
                 deathplace: true,
-                birthdate: true,
-                birthplace: true,
-                ownerId: true
+                ownerId: true,
+                sex: true,
+                documents: {
+                    select: {
+                        id: true
+                    }
+                }
             }
         });
         return updatedNode as Node;
     }
 
     public async deleteNode(id: number): Promise<Node> {
-        const node = await this.prisma.node.findUnique({
-            where: {
-                id: id
-            }
-        });
-        const { count } = await this.prisma.node.deleteMany({
+        const node = await this.prisma.node.delete({
             where: {
                 id: id,
-                user: {
-                    id: {
-                        not: id
-                    }
-                }
             }
         });
-        console.log(node)
-        if(node && count == 0) {
-            throw new Error("Can't delete this node");
-        }
         return node as Node;
     }
 
@@ -110,12 +106,36 @@ export class NodeController {
                         id: document
                     }
                 }
+            },
+            select: {
+                id: true,
+                birthdate: true,
+                firstname: true,
+                lastname: true,
+                birthplace: true,
+                deathdate: true,
+                fatherId: true,
+                motherId: true,
+                deathplace: true,
+                ownerId: true,
+                sex: true,
+                documents: {
+                    select: {
+                        id: true
+                    }
+                }
             }
         });
         return bindedNode as Node;
     }
 
     public async unbindDocument(node: number, document: number): Promise<Node> {
+        const documentToUnbind = await this.prisma.document.findUnique({
+            where: {
+                id: document
+            }
+        });
+        if(!documentToUnbind) throw new Error("The document doesn't exist");
         const unbindedNode = await this.prisma.node.update({
             where: {
                 id: node
@@ -124,6 +144,24 @@ export class NodeController {
                 documents: {
                     disconnect: {
                         id: document
+                    }
+                }
+            },
+            select: {
+                id: true,
+                birthdate: true,
+                firstname: true,
+                lastname: true,
+                birthplace: true,
+                deathdate: true,
+                fatherId: true,
+                motherId: true,
+                deathplace: true,
+                ownerId: true,
+                sex: true,
+                documents: {
+                    select: {
+                        id: true
                     }
                 }
             }

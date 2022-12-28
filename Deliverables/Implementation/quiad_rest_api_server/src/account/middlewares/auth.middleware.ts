@@ -16,6 +16,7 @@ export class AuthMiddleware {
                         const operations = role.operations;
                         const isAllowed = operations.find((o: any) => o.name == operation);
                         if(isAllowed) {
+                            res.locals.account = account;
                             next();
                         } else {
                             res.status(401).json(null);

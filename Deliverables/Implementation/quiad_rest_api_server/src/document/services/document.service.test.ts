@@ -30,7 +30,8 @@ describe("Document Service", () => {
                 retrievalDate: new Date("2022-01-01"),
                 retrievalPlace: "Salerno",
                 originPlace: "Salerno",
-                path: "/"
+                path: "/",
+                categoryId: 1
             }
         ]);
         mockRequest.body.originPlace = "Salerno";
@@ -59,7 +60,8 @@ describe("Document Service", () => {
             retrievalDate: new Date("2022-01-01"),
             retrievalPlace: "Salerno",
             originPlace: "Salerno",
-            path: "/"
+            path: "/",
+            categoryId: 1
         });
         return documentService
             .createDocument(mockRequest as Request, mockResponse as Response, nextFunction)
@@ -71,7 +73,8 @@ describe("Document Service", () => {
                     retrievalDate: new Date("2022-01-01"),
                     retrievalPlace: "Salerno",
                     originPlace: "Salerno",
-                    path: "/"
+                    path: "/",
+                    categoryId: 1
                 });
             });
     });

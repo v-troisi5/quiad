@@ -22,8 +22,12 @@ export class TreeRoute extends Route {
         this.app.get("/:owner", this.authMiddleware.filter("node:read"), (req, res, next) => {
             return this.treeService.getNodes(req, res, next);
         });
-        // TODO: Esporre binding documento
-        // TODO: Esporre unbinding documento
+        this.app.put("/:node/bind/:document", this.authMiddleware.filter("node:update"), (req, res, next) => {
+            return this.treeService.bindDocument(req, res, next);
+        });
+        this.app.put("/:node/unbind/:document", this.authMiddleware.filter("node:update"), (req, res, next) => {
+            return this.treeService.unbindDocument(req, res, next);
+        });
     }
 
 }
