@@ -22,6 +22,7 @@ export class NodeController {
                 documents: {
                     select: {
                         id: true,
+                        nome: true
                     }
                 },
                 fatherId: true,
@@ -50,7 +51,8 @@ export class NodeController {
                 sex: true,
                 documents: {
                     select: {
-                        id: true
+                        id: true,
+                        nome: true
                     }
                 }
             }
@@ -78,7 +80,8 @@ export class NodeController {
                 sex: true,
                 documents: {
                     select: {
-                        id: true
+                        id: true,
+                        nome: true
                     }
                 }
             }
@@ -121,7 +124,8 @@ export class NodeController {
                 sex: true,
                 documents: {
                     select: {
-                        id: true
+                        id: true,
+                        nome: true
                     }
                 }
             }
@@ -161,7 +165,8 @@ export class NodeController {
                 sex: true,
                 documents: {
                     select: {
-                        id: true
+                        id: true,
+                        nome: true
                     }
                 }
             }

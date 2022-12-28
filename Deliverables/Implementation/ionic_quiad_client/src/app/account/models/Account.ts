@@ -17,7 +17,7 @@ export class Account implements IAccount {
         this.username = account.username;
         this.password = account.password;
         this.token = account.token;
-        this.user = account.user;
+        this.user = account.user ? new User(account.user) : undefined;
     }
 
 }

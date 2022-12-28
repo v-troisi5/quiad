@@ -8,7 +8,8 @@ export const environment = {
   paths: {
     login: "/login",
     register: "/register",
-    nodes: "/nodes"
+    nodes: "/nodes",
+    documents: "/documents"
   }
 };
 

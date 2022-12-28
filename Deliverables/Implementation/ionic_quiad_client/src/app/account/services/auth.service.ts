@@ -4,7 +4,7 @@ import { map, Observable } from 'rxjs'
 import { environment } from 'src/environments/environment'
 import { Account } from '../models/Account'
 import { IAccount } from '../models/IAccount'
-import { Node } from '../models/Node'
+import { Node } from '../../tree/models/Node'
 import { User } from '../models/User'
 import jwt_decode from "jwt-decode"
 
@@ -33,16 +33,9 @@ export class AuthService {
       .post<{ account: IAccount }>(environment.apiUrl + environment.paths.login, credentials)
       .pipe(
         map(({ account }: { account: IAccount }) => {
-          const _ = new Account({
-            ...account,
-            user: new User({
-              ...account.user,
-              node: new Node(account.user?.node),
-            }),
-          });
-          this.account = account;
+          this.account = new Account(account);
           localStorage.setItem("token", account.token!);
-          return _;
+          return this.account;
         }),
       )
   }

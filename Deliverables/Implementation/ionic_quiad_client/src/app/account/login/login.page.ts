@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { NavController, ToastController } from '@ionic/angular';
 import { Subscription } from "rxjs";
-import { IAccount } from '../models/IAccount';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -17,7 +16,7 @@ export class LoginPage implements OnInit {
   public signinForm: FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
-    ricordati_di_me: new FormControl(false)
+    ricordatiDiMe: new FormControl(false)
   });
   loading: boolean = false;
 
@@ -28,7 +27,7 @@ export class LoginPage implements OnInit {
     private navController: NavController
   ) {
   }
-  
+
   ngOnInit() {
     const account = this.authService.Account;
     if(account) {
@@ -43,7 +42,7 @@ export class LoginPage implements OnInit {
     this.queryParamsSubscription?.unsubscribe();
   }
 
-  onSubmit(credentials: IAccount) {
+  onSubmit(credentials: { username: string, password: string, ricordatiDiMe: boolean }) {
     this.loading = true;
     this.authService.login(credentials).subscribe({
       next: (account) => {

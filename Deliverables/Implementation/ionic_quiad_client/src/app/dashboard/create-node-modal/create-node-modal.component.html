@@ -1,4 +1,13 @@
 
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title *ngIf="fatherId">Aggiungi figlio di {{ parent!.firstname }} {{ parent!.lastname }}</ion-title>
+    <ion-title *ngIf="motherId">Aggiungi figlio di {{ parent!.firstname }} {{ parent!.lastname }}</ion-title>
+    <ion-title *ngIf="motherHasChildren">Aggiungi madre di {{ parent!.firstname }} {{ parent!.lastname }}</ion-title>
+    <ion-title *ngIf="fatherHasChildren">Aggiungi padre di {{ parent!.firstname }} {{ parent!.lastname }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
   <form>
     <ion-item>
@@ -8,6 +17,9 @@
     <ion-item>
       <ion-label position="floating">Cognome</ion-label>
       <ion-input name="lastname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-button>Aggiungi</ion-button>
     </ion-item>
   </form>
 </ion-content>

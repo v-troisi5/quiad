@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: DocumentPage
+  },
+  {
+    path: 'details/:document',
+    loadChildren: () => import('./document-details/document-details.module').then( m => m.DocumentDetailsPageModule)
   }
 ];
 

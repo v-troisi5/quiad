@@ -19,9 +19,22 @@ export class NodeService {
       environment.apiUrl + environment.paths.nodes + '/' + owner,
       {
         headers: {
-          "Authorization": token
+          "Authorization": `Bearer ${token}`
         }
       }
     )
   }
+
+  public createNode(node: Node) {
+    return this.httpClient.post(environment.apiUrl + environment.paths.nodes, {
+      node: node
+    });
+  }
+
+  public updateNode(id: number, node: Node) {
+    return this.httpClient.patch(environment.apiUrl + environment.paths.nodes + "/" + id, {
+      node: node
+    });
+  }
+
 }

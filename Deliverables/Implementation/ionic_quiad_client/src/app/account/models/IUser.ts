@@ -1,4 +1,4 @@
-import { INode } from "./INode";
+import { INode } from "src/app/tree/models/INode";
 
 export interface IUser {
 

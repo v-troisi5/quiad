@@ -9,6 +9,7 @@ export class AuthService {
 
     public async login(req: Request, res: Response, next: NextFunction): Promise<void> {
         const username = req.body.username;
+        console.log(username);
         if(username) {                              // PRE: Verifico che lo username esista
             try {
                 const account = await this.accountController.findByUsername(username);

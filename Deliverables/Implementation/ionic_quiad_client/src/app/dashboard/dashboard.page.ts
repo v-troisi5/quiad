@@ -33,10 +33,17 @@ export class DashboardPage implements OnInit {
     }
   }
 
-  public presentCreateNodeModal() {
+  public presentCreateNodeModal(relations: { fatherId?: number, motherId?: number, motherHasChildren?: number, fatherHasChildren?: number }, parent: Node) {
     this.modalController
       .create({
         component: CreateNodeModalComponent,
+        componentProps: {
+          fatherId: relations.fatherId,
+          motherId: relations.motherId,
+          motherHasChildren: relations.motherHasChildren,
+          fatherHasChildren: relations.fatherHasChildren,
+          parent: parent
+        }
       })
       .then((modal) => {
         modal.present()

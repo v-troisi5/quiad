@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import { AccountController } from "../controllers/account.controller";
 import bcrypt from "bcrypt";
+import { Prisma } from "@prisma/client";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 
 export class RegistrationService {
 
