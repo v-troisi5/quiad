@@ -17,7 +17,10 @@ describe("Tree Service", () => {
         };
         mockResponse = {
             json: jest.fn(),
-            status: jest.fn((code: number) => mockResponse as Response)
+            status: jest.fn((code: number) => mockResponse as Response),
+            locals: {
+
+            }
         };
     });
 
@@ -39,6 +42,9 @@ describe("Tree Service", () => {
         ]);
         mockRequest.params = {
             owner: "1"
+        }
+        mockResponse.locals!.account = {
+            id: 1
         }
         return treeService
             .getNodes(mockRequest as Request, mockResponse as Response, nextFunction)
@@ -185,6 +191,15 @@ describe("Tree Service", () => {
         });
         mockRequest.params = {
             id: "2"
+        };
+        mockResponse.locals!.account = {
+            id: 1,
+            user: {
+                id: 1,
+                node: {
+                    id: 1
+                }
+            }
         }
         return treeService
             .deleteNode(mockRequest as Request, mockResponse as Response, nextFunction)
@@ -259,6 +274,9 @@ describe("Tree Service", () => {
     });
 
     it("Should unbind a document from a node", () => {
+        prismaMock.document.findUnique.mockResolvedValue({
+            id: 2
+        } as any);
         prismaMock.node.update.mockResolvedValue({
             id: 2,
             firstname: "Luigi",

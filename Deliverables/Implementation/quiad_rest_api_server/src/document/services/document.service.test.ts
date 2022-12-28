@@ -45,6 +45,7 @@ describe("Document Service", () => {
                         originDate: new Date("2022-01-01"),
                         retrievalDate: new Date("2022-01-01"),
                         retrievalPlace: "Salerno",
+                        categoryId: 1,
                         originPlace: "Salerno",
                         path: "/"
                     }

@@ -138,6 +138,9 @@ describe("Node Controller", () => {
     });
 
     it("Should unbind a document from a node", () => {
+        prismaMock.document.findUnique.mockResolvedValue({
+            id: 2,
+        } as any);
         prismaMock.node.update.mockResolvedValue({
             id: 2,
             firstname: "Luigi",
