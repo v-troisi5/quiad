@@ -15,7 +15,8 @@ describe("Document Controller", () => {
                 retrievalDate: new Date("2022-01-01"),
                 retrievalPlace: "Salerno",
                 originPlace: "Salerno",
-                path: "/"
+                path: "/",
+                categoryId: 1
             }
         ]);
         return documentController
@@ -34,7 +35,8 @@ describe("Document Controller", () => {
             retrievalDate: new Date("2022-01-01"),
             retrievalPlace: "Salerno",
             originPlace: "Salerno",
-            path: "/"
+            path: "/",
+            categoryId: 1
         });
         return documentController
             .createDocument({

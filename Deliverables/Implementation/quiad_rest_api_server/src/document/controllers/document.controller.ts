@@ -12,8 +12,10 @@ export class DocumentController {
                 retrievalDate: filter.retrievalDate,
                 retrievalPlace: filter.retrievalPlace,
                 originDate: filter.originDate,
-                originPlace: filter.originPlace
-            }
+                originPlace: filter.originPlace,
+                categoryId: filter.categoryId
+            },
+
         });
         return documents as Document[];
     }
