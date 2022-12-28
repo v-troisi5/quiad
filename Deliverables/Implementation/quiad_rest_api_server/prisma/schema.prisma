@@ -17,18 +17,18 @@ model Account {
 }
 
 model Role {
-  id           Int          @id @default(autoincrement())
-  name         String       @unique
+  id         Int         @id @default(autoincrement())
+  name       String      @unique
   // capabilities Capability[]
-  operations   Operation[]
-  user         User[]
+  operations Operation[]
+  user       User[]
 }
 
 model Operation {
-  id           Int          @id @default(autoincrement())
-  name         String       @unique
+  id    Int    @id @default(autoincrement())
+  name  String @unique
   // capabilities Capability[]
-  roles        Role[]
+  roles Role[]
 }
 
 // model Capability {
@@ -54,8 +54,9 @@ model User {
 }
 
 model Category {
-  id          Int    @id @default(autoincrement())
-  description String
+  id            Int        @id @default(autoincrement())
+  description   String
+  documents     Document[]
 }
 
 enum Sex {
@@ -81,7 +82,7 @@ model Node {
   fatherHasChildren Node[]     @relation("father")
   documents         Document[]
   ownerId           Int?
-  owner             User?       @relation("owner", fields: [ownerId], references: [id])
+  owner             User?      @relation("owner", fields: [ownerId], references: [id])
 }
 
 model Curator {
@@ -103,12 +104,14 @@ model Supervisor {
 }
 
 model Document {
-  id              Int    @id @default(autoincrement())
-  nome            String
-  retrievalDate   DateTime
-  retrievalPlace  String
-  originDate      DateTime
-  originPlace     String
-  path            String
-  node            Node[]
+  id             Int      @id @default(autoincrement())
+  nome           String
+  retrievalDate  DateTime
+  retrievalPlace String
+  originDate     DateTime
+  originPlace    String
+  path           String
+  category       Category @relation(fields: [categoryId], references: [id])
+  categoryId     Int
+  node           Node[]
 }
