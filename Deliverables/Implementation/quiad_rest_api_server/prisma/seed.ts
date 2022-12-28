@@ -34,6 +34,14 @@ const prisma = new PrismaClient()
           },
           {
             create: {
+              name: "node:delete"
+            },
+            where: {
+              name: "node:delete"
+            }
+          },
+          {
+            create: {
               name: "document:search"
             },
             where: {
@@ -53,5 +61,39 @@ const prisma = new PrismaClient()
     data: {
       name: 'supervisor',
     },
+  })
+  await prisma.category.createMany({
+    data: [
+      {
+        description: "Certificato di nascita"
+      },
+      {
+        description: "Certificato di morte"
+      },
+      {
+        description: "Certificato di matrimonio"
+      },
+      {
+        description: "Registro di leva"
+      },
+      {
+        description: "Censimento"
+      },
+      {
+        description: "Giornale"
+      },
+      {
+        description: "Lettera"
+      },
+      {
+        description: "Scritto personale"
+      },
+      {
+        description: "Iconografia"
+      },
+      {
+        description: "Altro"
+      }
+    ]
   })
 })()
