@@ -37,4 +37,12 @@ export class NodeService {
     });
   }
 
+  public bindDocument(node: number, document: number) {
+    return this.httpClient.put(environment.apiUrl + environment.paths.nodes + "/" + node + "/bind/" + document, {});
+  }
+
+  public unbindDocument(node: number, document: number) {
+    return this.httpClient.put(environment.apiUrl + environment.paths.nodes + "/" + node + "/unbind/" + document, {});
+  }
+
 }
