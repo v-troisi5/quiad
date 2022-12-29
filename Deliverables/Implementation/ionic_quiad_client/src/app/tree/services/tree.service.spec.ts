@@ -1,10 +1,10 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { DocumentService } from './document.service';
+import { TreeService } from './tree.service';
 
-describe('DocumentService', () => {
-  let service: DocumentService;
+describe('TreeService', () => {
+  let service: TreeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -12,10 +12,11 @@ describe('DocumentService', () => {
         HttpClientTestingModule
       ]
     });
-    service = TestBed.inject(DocumentService);
+    service = TestBed.inject(TreeService);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
 });
