@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Pagina principale | Quiad</ion-title>
+    <ion-buttons *ngIf="account" slot="end">
+      <ion-button routerLink="/main/dashboard">Dashboard</ion-button>
+      <ion-button (click)="presentLogoutAlert()">Esci</ion-button>
+    </ion-buttons>
+    <ion-buttons *ngIf="!account" slot="end">
+      <ion-button routerLink="/main/login">Accedi</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="secondary">
+
+</ion-content>
