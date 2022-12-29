@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { Account } from 'src/app/account/models/account';
 import { AccountProviderService } from 'src/app/services/account-provider.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class DashboardPage implements OnInit {
     private accountProviderService: AccountProviderService,
   ) { }
 
-  public account?: { id: number };
+  public account?: Account;
 
   ngOnInit() {
     this.accountProviderService.account.subscribe(account => {

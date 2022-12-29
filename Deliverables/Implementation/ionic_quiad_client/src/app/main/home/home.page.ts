@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { Account } from 'src/app/account/models/account';
 import { AccountProviderService } from 'src/app/services/account-provider.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AccountProviderService } from 'src/app/services/account-provider.servic
 })
 export class HomePage implements OnInit {
 
-  public account?: { id: number };
+  public account?: Account;
 
   constructor(
     private accountProviderService: AccountProviderService,
