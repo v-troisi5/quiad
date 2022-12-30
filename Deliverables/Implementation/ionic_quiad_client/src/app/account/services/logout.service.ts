@@ -27,7 +27,8 @@ export class LogoutService {
             localStorage.removeItem("token");
             this.navController.navigateRoot("/main/home");
             this.toastController.create({
-                message: "Logout effettuato."
+                message: "Logout effettuato.",
+                duration: 1000
               }).then(toast => {
                 toast.present();
               })

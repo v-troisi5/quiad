@@ -18,4 +18,15 @@ export class TreeService {
       }))
   }
 
+  public modifyNode(id: number, node: Node): Observable<Node> {
+    return this.httpClient
+      .patch<INode>(environment.apiUrl + environment.paths.nodes + "/" + id, {
+        node
+      })
+      .pipe(map(node => {
+        const _ = new Node(node)
+        return _;
+      }));
+  }
+
 }
