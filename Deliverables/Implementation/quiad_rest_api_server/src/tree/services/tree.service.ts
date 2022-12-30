@@ -9,11 +9,11 @@ export class TreeService {
     public async getNodes(req: Request, res: Response, next: NextFunction) {
         const account = res.locals.account;
         const owner = parseInt(req.params.owner);
-        if(account.id == owner) {
+        if(account.user.id == owner) {
             const nodes = await this.nodeController.getNodes(owner);
             res.json(nodes);
         } else {
-            res.status(401).json(null);
+            res.status(403).json(null);
         }
     }
 

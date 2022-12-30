@@ -44,7 +44,10 @@ describe("Tree Service", () => {
             owner: "1"
         }
         mockResponse.locals!.account = {
-            id: 1
+            id: 1,
+            user: {
+                id: 1
+            }
         }
         return treeService
             .getNodes(mockRequest as Request, mockResponse as Response, nextFunction)
@@ -64,6 +67,24 @@ describe("Tree Service", () => {
                         fatherId: null
                     }
                 ]);
+            });
+    });
+
+    it("Should not find a list of nodes beloging to another account", () => {
+        mockRequest.params = {
+            owner: "2"
+        }
+        mockResponse.locals!.account = {
+            id: 1,
+            user: {
+                id: 1
+            }
+        }
+        return treeService
+            .getNodes(mockRequest as Request, mockResponse as Response, nextFunction)
+            .then(() => {
+                expect(mockResponse.json).toBeCalledWith(null);
+                expect(mockResponse.status).toBeCalledWith(403);
             });
     });
 
@@ -220,6 +241,49 @@ describe("Tree Service", () => {
             });
     });
 
+    it("Should not delete a node that doesn't exist", () => {
+        prismaMock.node.delete.mockRejectedValue(null)
+        mockRequest.params = {
+            id: "2"
+        };
+        mockResponse.locals!.account = {
+            id: 1,
+            user: {
+                id: 1,
+                node: {
+                    id: 1
+                }
+            }
+        }
+        return treeService
+            .deleteNode(mockRequest as Request, mockResponse as Response, nextFunction)
+            .then(() => {
+                expect(mockResponse.status).toBeCalledWith(500);
+                expect(mockResponse.json).toBeCalledWith(null);
+            });
+    });
+
+    it("Should not delete the user node", () => {
+        mockRequest.params = {
+            id: "1"
+        };
+        mockResponse.locals!.account = {
+            id: 1,
+            user: {
+                id: 1,
+                node: {
+                    id: 1
+                }
+            }
+        }
+        return treeService
+            .deleteNode(mockRequest as Request, mockResponse as Response, nextFunction)
+            .then(() => {
+                expect(mockResponse.json).toBeCalledWith(null);
+                expect(mockResponse.status).toBeCalledWith(500);
+            });
+    });
+
     it("Should bind a document to a node", () => {
         prismaMock.node.update.mockResolvedValue({
             id: 2,
@@ -270,6 +334,34 @@ describe("Tree Service", () => {
                         }
                     ]
                 });
+            });
+    });
+
+    it("Should not perform bind if either the node or the document doesn't exist", () => {
+        prismaMock.node.update.mockRejectedValue(null);
+        mockRequest.params = {
+            node: "2",
+            document: "3"
+        };
+        return treeService
+            .bindDocument(mockRequest as Request, mockResponse as Response, nextFunction)
+            .then(() => {
+                expect(mockResponse.status).toBeCalledWith(500);
+                expect(mockResponse.json).toBeCalledWith(null);
+            });
+    });
+
+    it("Should not perform unbind if either the node or the document doesn't exist", () => {
+        prismaMock.node.update.mockRejectedValue(null);
+        mockRequest.params = {
+            node: "2",
+            document: "3"
+        };
+        return treeService
+            .unbindDocument(mockRequest as Request, mockResponse as Response, nextFunction)
+            .then(() => {
+                expect(mockResponse.status).toBeCalledWith(500);
+                expect(mockResponse.json).toBeCalledWith(null);
             });
     });
 

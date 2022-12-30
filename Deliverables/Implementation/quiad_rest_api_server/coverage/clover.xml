@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1672227522706" clover="3.2.0">
-  <project timestamp="1672227522706" name="All files">
-    <metrics statements="162" coveredstatements="157" conditionals="48" coveredconditionals="38" methods="34" coveredmethods="34" elements="244" coveredelements="229" complexity="0" loc="162" ncloc="162" packages="9" files="10" classes="10"/>
+<coverage generated="1672426766426" clover="3.2.0">
+  <project timestamp="1672426766426" name="All files">
+    <metrics statements="163" coveredstatements="163" conditionals="48" coveredconditionals="40" methods="34" coveredmethods="34" elements="245" coveredelements="237" complexity="0" loc="163" ncloc="163" packages="9" files="10" classes="10"/>
     <package name="account.controllers.src.account.controllers">
       <metrics statements="10" coveredstatements="10" conditionals="4" coveredconditionals="3" methods="3" coveredmethods="3"/>
       <file name="account.controller.ts" path="E:\Documenti\TERZO ANNO\quiad\Deliverables\Implementation\quiad_rest_api_server\dist\account\controllers\src\account\controllers\account.controller.ts">
@@ -19,9 +19,9 @@
       </file>
     </package>
     <package name="account.services.src.account.services">
-      <metrics statements="32" coveredstatements="32" conditionals="7" coveredconditionals="7" methods="4" coveredmethods="4"/>
+      <metrics statements="33" coveredstatements="33" conditionals="7" coveredconditionals="7" methods="4" coveredmethods="4"/>
       <file name="auth.service.ts" path="E:\Documenti\TERZO ANNO\quiad\Deliverables\Implementation\quiad_rest_api_server\dist\account\services\src\account\services\auth.service.ts">
-        <metrics statements="21" coveredstatements="21" conditionals="7" coveredconditionals="7" methods="2" coveredmethods="2"/>
+        <metrics statements="22" coveredstatements="22" conditionals="7" coveredconditionals="7" methods="2" coveredmethods="2"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
@@ -29,20 +29,21 @@
         <line num="8" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="6" type="stmt"/>
-        <line num="12" count="7" type="cond" truecount="1" falsecount="0"/>
-        <line num="14" count="5" type="stmt"/>
-        <line num="15" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="16" count="3" type="stmt"/>
-        <line num="17" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="18" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
-        <line num="30" count="1" type="stmt"/>
-        <line num="33" count="1" type="stmt"/>
-        <line num="36" count="1" type="stmt"/>
-        <line num="39" count="1" type="stmt"/>
-        <line num="42" count="1" type="stmt"/>
-        <line num="46" count="1" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="13" count="7" type="cond" truecount="1" falsecount="0"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="16" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
       </file>
       <file name="registration.service.ts" path="E:\Documenti\TERZO ANNO\quiad\Deliverables\Implementation\quiad_rest_api_server\dist\account\services\src\account\services\registration.service.ts">
         <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
@@ -108,33 +109,33 @@
       </file>
     </package>
     <package name="tree.controllers.src.tree.controllers">
-      <metrics statements="24" coveredstatements="24" conditionals="7" coveredconditionals="6" methods="7" coveredmethods="7"/>
+      <metrics statements="24" coveredstatements="24" conditionals="7" coveredconditionals="7" methods="7" coveredmethods="7"/>
       <file name="node.controller.ts" path="E:\Documenti\TERZO ANNO\quiad\Deliverables\Implementation\quiad_rest_api_server\dist\tree\controllers\src\tree\controllers\node.controller.ts">
-        <metrics statements="24" coveredstatements="24" conditionals="7" coveredconditionals="6" methods="7" coveredmethods="7"/>
+        <metrics statements="24" coveredstatements="24" conditionals="7" coveredconditionals="7" methods="7" coveredmethods="7"/>
         <line num="2" count="2" type="stmt"/>
         <line num="5" count="2" type="stmt"/>
         <line num="7" count="2" type="stmt"/>
         <line num="9" count="2" type="stmt"/>
         <line num="10" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="33" count="2" type="stmt"/>
-        <line num="36" count="2" type="stmt"/>
-        <line num="37" count="3" type="cond" truecount="1" falsecount="0"/>
-        <line num="58" count="2" type="stmt"/>
-        <line num="61" count="2" type="stmt"/>
-        <line num="62" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="86" count="2" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="37" count="2" type="stmt"/>
+        <line num="38" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="60" count="2" type="stmt"/>
+        <line num="63" count="2" type="stmt"/>
+        <line num="64" count="2" type="cond" truecount="1" falsecount="0"/>
         <line num="89" count="2" type="stmt"/>
-        <line num="90" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="95" count="2" type="stmt"/>
+        <line num="92" count="2" type="stmt"/>
+        <line num="93" count="3" type="cond" truecount="1" falsecount="0"/>
         <line num="98" count="2" type="stmt"/>
-        <line num="99" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="129" count="2" type="stmt"/>
-        <line num="132" count="2" type="stmt"/>
-        <line num="133" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="138" count="2" type="cond" truecount="0" falsecount="1"/>
-        <line num="139" count="2" type="stmt"/>
-        <line num="169" count="2" type="stmt"/>
-        <line num="172" count="2" type="stmt"/>
+        <line num="101" count="2" type="stmt"/>
+        <line num="102" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="133" count="2" type="stmt"/>
+        <line num="136" count="2" type="stmt"/>
+        <line num="137" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="142" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="143" count="2" type="stmt"/>
+        <line num="174" count="2" type="stmt"/>
+        <line num="177" count="2" type="stmt"/>
       </file>
     </package>
     <package name="tree.models.src.tree.models">
@@ -161,20 +162,20 @@
       </file>
     </package>
     <package name="tree.services.src.tree.services">
-      <metrics statements="43" coveredstatements="38" conditionals="2" coveredconditionals="1" methods="7" coveredmethods="7"/>
+      <metrics statements="43" coveredstatements="43" conditionals="2" coveredconditionals="2" methods="7" coveredmethods="7"/>
       <file name="tree.service.ts" path="E:\Documenti\TERZO ANNO\quiad\Deliverables\Implementation\quiad_rest_api_server\dist\tree\services\src\tree\services\tree.service.ts">
-        <metrics statements="43" coveredstatements="38" conditionals="2" coveredconditionals="1" methods="7" coveredmethods="7"/>
+        <metrics statements="43" coveredstatements="43" conditionals="2" coveredconditionals="2" methods="7" coveredmethods="7"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="12" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="3" type="cond" truecount="1" falsecount="0"/>
         <line num="13" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
         <line num="21" count="2" type="stmt"/>
         <line num="24" count="2" type="stmt"/>
@@ -186,26 +187,26 @@
         <line num="34" count="1" type="stmt"/>
         <line num="35" count="1" type="stmt"/>
         <line num="38" count="1" type="stmt"/>
-        <line num="39" count="1" type="stmt"/>
-        <line num="40" count="1" type="stmt"/>
-        <line num="41" count="1" type="stmt"/>
-        <line num="42" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="43" count="0" type="stmt"/>
-        <line num="46" count="1" type="stmt"/>
+        <line num="39" count="3" type="stmt"/>
+        <line num="40" count="3" type="stmt"/>
+        <line num="41" count="3" type="stmt"/>
+        <line num="42" count="5" type="cond" truecount="1" falsecount="0"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="46" count="2" type="stmt"/>
         <line num="47" count="1" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
         <line num="54" count="1" type="stmt"/>
-        <line num="55" count="1" type="stmt"/>
-        <line num="56" count="1" type="stmt"/>
-        <line num="58" count="1" type="stmt"/>
+        <line num="55" count="2" type="stmt"/>
+        <line num="56" count="2" type="stmt"/>
+        <line num="58" count="2" type="stmt"/>
         <line num="59" count="1" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
         <line num="65" count="1" type="stmt"/>
-        <line num="66" count="1" type="stmt"/>
-        <line num="67" count="1" type="stmt"/>
-        <line num="69" count="1" type="stmt"/>
+        <line num="66" count="2" type="stmt"/>
+        <line num="67" count="2" type="stmt"/>
+        <line num="69" count="2" type="stmt"/>
         <line num="70" count="1" type="stmt"/>
-        <line num="72" count="0" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
         <line num="76" count="1" type="stmt"/>
       </file>
     </package>
@@ -217,7 +218,7 @@
         <line num="4" count="7" type="stmt"/>
         <line num="6" count="7" type="stmt"/>
         <line num="10" count="7" type="stmt"/>
-        <line num="11" count="28" type="stmt"/>
+        <line num="11" count="34" type="stmt"/>
         <line num="14" count="7" type="stmt"/>
       </file>
     </package>

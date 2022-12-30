@@ -166,4 +166,34 @@ describe("Node Controller", () => {
             })
     });
 
+    it("Should throw an error when unbinding non-bound document from a node", () => {
+        prismaMock.document.findUnique.mockResolvedValue(null);
+        prismaMock.node.update.mockResolvedValue({
+            id: 2,
+            firstname: "Luigi",
+            lastname: "Rossi",
+            birthdate: new Date("1990-02-01"),
+            birthplace: "Giffoni",
+            ownerId: 1,
+            sex: "MALE",
+            deathdate: null,
+            deathplace: null,
+            motherId: null,
+            fatherId: null,
+            documents: [
+                {
+                    id: 3
+                },
+            ]
+        } as any);
+        return nodeController
+            .unbindDocument(2, 4)
+            .then(() => {
+                fail()
+            })
+            .catch(err => {
+                expect(err).toBeDefined();
+            })
+    });
+
 })
