@@ -105,7 +105,7 @@ model Supervisor {
 
 model Document {
   id             Int      @id @default(autoincrement())
-  nome           String // TODO: Da rinominare in "name"
+  name           String // TODO: Da rinominare in "name"
   retrievalDate  DateTime
   retrievalPlace String
   originDate     DateTime
@@ -113,5 +113,5 @@ model Document {
   path           String
   category       Category @relation(fields: [categoryId], references: [id])
   categoryId     Int
-  node           Node[] // TODO: da rinominare in nodes
+  nodes          Node[] // TODO: da rinominare in nodes
 }

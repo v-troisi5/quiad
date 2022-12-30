@@ -25,8 +25,8 @@ export class DocumentService {
 export interface SearchDocumentsFilter {
 
   retrievalPlace?: string;
-  retrievalDate?: Date;
+  retrievalDate?: Date | string;
   originPlace?: string;
-  originDate?: Date;
+  originDate?: Date | string;
 
 }

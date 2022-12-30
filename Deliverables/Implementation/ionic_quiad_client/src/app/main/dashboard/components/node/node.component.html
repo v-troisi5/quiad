@@ -5,9 +5,9 @@
       <ion-icon *ngIf="node.sex == 'FEMALE'" name="female"></ion-icon>
       <ion-icon *ngIf="!node.sex" name="help" color="light"></ion-icon>
       <ion-title *ngIf="node.firstname || node.lastname">{{ node.firstname }} {{ node.lastname }}</ion-title>
-      <ion-title color="light" *ngIf="!(node.firstname && node.lastname)">Unnamed</ion-title>
+      <ion-title color="light" *ngIf="!(node.firstname || node.lastname)">Unnamed</ion-title>
       <ion-buttons slot="end">
-        <ion-button color="primary" (click)="presentModifyNodeModal()" title="Modifica {{node.firstname}} {{node.lastname}}">
+        <ion-button color="primary" *ngIf="!isUserNode" (click)="presentModifyNodeModal()" title="Modifica {{node.firstname}} {{node.lastname}}">
           <ion-icon name="pencil"></ion-icon>
         </ion-button>
         <ion-button color="danger" *ngIf="!isUserNode" title="Elimina {{node.firstname}} {{node.lastname}}" (click)="presentDeleteNodeAlert(node)">
@@ -34,11 +34,11 @@
       </ion-label>
     </ion-item>
     <ion-item lines="none" [color]="color">
-      <ion-button color="primary" title="Aggiungi padre di {{node.firstname}} {{node.lastname}}" [disabled]="node.fatherId">
+      <ion-button color="primary" title="Aggiungi padre di {{node.firstname}} {{node.lastname}}" (click)="presentAddNodeModal({ fatherHasChildren: node.id }, node)" [disabled]="node.fatherId">
         <ion-icon name="man"></ion-icon>
         <ion-icon name="add"></ion-icon>
       </ion-button>
-      <ion-button color="danger" slot="end" title="Aggiungi madre di {{node.firstname}} {{node.lastname}}" [disabled]="node.motherId">
+      <ion-button color="danger" slot="end" title="Aggiungi madre di {{node.firstname}} {{node.lastname}}" (click)="presentAddNodeModal({ motherHasChildren: node.id }, node)" [disabled]="node.motherId">
         <ion-icon name="woman"></ion-icon>
         <ion-icon name="add"></ion-icon>
       </ion-button>

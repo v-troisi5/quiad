@@ -23,7 +23,7 @@ export class DashboardPage implements OnInit {
   public accountSubscription: Subscription = this.accountProviderService.account.subscribe(account => {
     if(account) {
       this.treeService
-        .getNodes(account.id)
+        .getNodes(account.user.id)
         .subscribe(nodes => {
           for(const node of nodes) {
             account.user.addNode(node);

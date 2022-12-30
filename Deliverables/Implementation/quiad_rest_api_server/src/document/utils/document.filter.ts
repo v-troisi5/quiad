@@ -14,9 +14,9 @@ export class DocumentFilter {
         originPlace?: string
         categoryId?: string;
     }) {
-        this.retrievalDate = documentFilter?.retrievalDate;
+        this.retrievalDate = documentFilter?.retrievalDate ? new Date(documentFilter.retrievalDate!) : undefined;
         this.retrievalPlace = documentFilter?.retrievalPlace;
-        this.originDate = documentFilter?.originDate;
+        this.originDate = documentFilter?.originDate ? new Date(documentFilter.originDate!) : undefined;
         this.originPlace = documentFilter?.originPlace;
         this.categoryId = documentFilter?.categoryId ? parseInt(documentFilter.categoryId) : undefined;
     }

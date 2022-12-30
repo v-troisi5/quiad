@@ -5,6 +5,7 @@ import { Account } from 'src/app/account/models/account';
 import { AccountProviderService } from 'src/app/services/account-provider.service';
 import { Node } from 'src/app/tree/models/node';
 import { TreeService } from 'src/app/tree/services/tree.service';
+import { AddNodeComponent } from '../add-node/add-node.component';
 import { ModifyNodeComponent } from '../modify-node/modify-node.component';
 
 @Component({
@@ -60,9 +61,9 @@ export class NodeComponent implements OnInit {
           text: "Sì",
           handler: () => {
             this.treeService
-              .deleteNode(node.id)
+              .deleteNode(node.id!)
               .subscribe(node => {
-                this.account?.user.deleteNode(node.id);
+                this.account?.user.deleteNode(node.id!);
                 this.toastController.create({
                   message: "Il nodo è stato eliminato",
                   duration: 1000,
@@ -81,6 +82,23 @@ export class NodeComponent implements OnInit {
     }).then(alert => {
       alert.present();
     });
+  }
+
+  public presentAddNodeModal(relation: { motherHasChildren?: number, fatherHasChildren?: number, fatherId?: number, motherId?: number }, parent: Node) {
+    this.modalController.create({
+      component: AddNodeComponent,
+      componentProps: {
+        relation: {
+          motherHasChildren: relation.motherHasChildren ? { connect: { id: relation.motherHasChildren } } : undefined,
+          fatherHasChildren: relation.fatherHasChildren ? { connect: { id: relation.fatherHasChildren } } : undefined,
+          fatherId: relation.fatherId,
+          motherId: relation.motherId
+        },
+        parent
+      }
+    }).then(modal => {
+      modal.present();
+    })
   }
 
   ngOnDestroy() {

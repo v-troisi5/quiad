@@ -6,8 +6,11 @@
             </ion-button>
           </ion-buttons>
         <ion-title>Pagina principale | Quiad</ion-title>
-        <ion-buttons *ngIf="account" slot="end">
-            <ion-button (click)="presentLogoutAlert()">Esci</ion-button>
+        <ion-buttons slot="end">
+          <ion-button routerLink="/main/documents">
+            <ion-icon name="search"></ion-icon>
+          </ion-button>
+          <ion-button (click)="presentLogoutAlert()">Esci</ion-button>
         </ion-buttons>
     </ion-toolbar>
   </ion-header>

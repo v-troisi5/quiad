@@ -44,9 +44,9 @@ export class User implements IUser {
             if(node.id == id) {
                 node.firstname = modifiedNode.firstname ?? node.firstname;
                 node.lastname = modifiedNode.lastname ?? node.lastname;
-                node.birthdate = modifiedNode.birthdate ?? node.birthdate;
+                node.birthdate = modifiedNode.birthdate;
                 node.birthplace = modifiedNode.birthplace ?? node.birthplace;
-                node.deathdate = modifiedNode.deathdate ?? node.deathdate;
+                node.deathdate = modifiedNode.deathdate;
                 node.deathplace = modifiedNode.deathplace ?? node.deathplace;
                 node.motherId = modifiedNode.motherId ?? node.motherId;
                 node.fatherId = modifiedNode.fatherId ?? node.fatherId;
@@ -60,6 +60,13 @@ export class User implements IUser {
         for(const node of this.tree) {
             if(node.id == id) {
                 this.tree.delete(node);
+                for(const node of this.tree) {
+                    if(node.fatherId == id) {
+                        node.fatherId = undefined;
+                    } else if(node.motherId == id) {
+                        node.motherId = undefined;
+                    }
+                }
                 return;
             }
         }

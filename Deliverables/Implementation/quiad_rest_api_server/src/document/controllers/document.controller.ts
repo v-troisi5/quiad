@@ -9,9 +9,13 @@ export class DocumentController {
     public async findDocuments(filter: DocumentFilter): Promise<Document[]> {
         const documents = await this.prisma.document.findMany({
             where: {
-                retrievalDate: filter.retrievalDate,
+                retrievalDate: {
+                    gte: filter.retrievalDate
+                },
+                originDate: {
+                    gte: filter.originDate
+                },
                 retrievalPlace: filter.retrievalPlace,
-                originDate: filter.originDate,
                 originPlace: filter.originPlace,
                 categoryId: filter.categoryId
             },

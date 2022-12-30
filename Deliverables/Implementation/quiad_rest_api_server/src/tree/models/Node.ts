@@ -16,7 +16,7 @@ export class Node {
     public readonly motherId?: number;
     public readonly documents?: Document[];
     public readonly motherHasChildren?: { connect: { id: string }[] | { id: string } }
-    public readonly fahterHasChildren?: { connect: { id: string }[] | { id: string } }
+    public readonly fatherHasChildren?: { connect: { id: string }[] | { id: string } }
 
     public constructor(node: {
         id?: number,
@@ -45,7 +45,7 @@ export class Node {
         this.birthdate = node.birthdate ? new Date(node.birthdate) : node.birthdate;
         this.deathdate = node.deathdate ? new Date(node.deathdate) : node.deathdate;
         this.motherHasChildren = node.motherHasChildren;
-        this.fahterHasChildren = node.fatherHasChildren;
+        this.fatherHasChildren = node.fatherHasChildren;
     }
 
 }

@@ -1,9 +1,46 @@
 <ion-header>
   <ion-toolbar>
-
+    <ion-title>Aggiungi nodo</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
+
+  <ion-item>
+    <ion-label position="floating">Nome</ion-label>
+    <ion-input [(ngModel)]="node.firstname" name="firstname" id="firstname" placeholder="Nome del nodo"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Cognome</ion-label>
+    <ion-input [(ngModel)]="node.lastname" name="lastname" id="lastname" placeholder="Cognome del nodo"></ion-input>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label position="floating">Luogo di nascita</ion-label>
+    <ion-input [(ngModel)]="node.birthplace" name="birthplace" id="birthplace" placeholder="Luogo di nascita del nodo"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Luogo di morte</ion-label>
+    <ion-input [(ngModel)]="node.deathplace" name="deathplace" id="deathplace"  placeholder="Luogo di morte del nodo"></ion-input>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label position="floating">Data di nascita</ion-label>
+    <ion-input type="date" [(ngModel)]="node.birthdate" name="birthdate" id="birthdate" placeholder="Data di nascita del nodo"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Data di morte</ion-label>
+    <ion-input type="date" [(ngModel)]="node.deathdate" name="deathdate" id="deathdate" placeholder="Data di morte del nodo"></ion-input>
+  </ion-item>
+
 </ion-content>
+
+<ion-footer>
+  <ion-button expand="block" (click)="onSubmit()">
+    <ion-icon name="save" slot="start"></ion-icon>
+    Salva
+  </ion-button>
+</ion-footer>

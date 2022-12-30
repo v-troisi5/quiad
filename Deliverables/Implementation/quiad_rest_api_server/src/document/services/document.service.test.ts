@@ -25,7 +25,7 @@ describe("Document Service", () => {
         prismaMock.document.findMany.mockResolvedValue([
             {
                 id: 1,
-                nome: "Registro delle nascite",
+                name: "Registro delle nascite",
                 originDate: new Date("2022-01-01"),
                 retrievalDate: new Date("2022-01-01"),
                 retrievalPlace: "Salerno",
@@ -56,7 +56,7 @@ describe("Document Service", () => {
     it("It should create a document", () => {
         prismaMock.document.create.mockResolvedValue({
             id: 1,
-            nome: "Registro delle nascite",
+            name: "Registro delle nascite",
             originDate: new Date("2022-01-01"),
             retrievalDate: new Date("2022-01-01"),
             retrievalPlace: "Salerno",
