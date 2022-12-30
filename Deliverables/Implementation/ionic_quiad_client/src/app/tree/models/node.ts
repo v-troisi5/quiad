@@ -1,3 +1,4 @@
+import { Document } from "src/app/document/models/document";
 
 
 export interface INode {
@@ -18,15 +19,16 @@ export interface INode {
 export class Node implements INode {
 
     public readonly id: number;
-    public readonly firstname?: string;
-    public readonly lastname?: string;
-    public readonly sex?: "MALE" | "FEMALE";
-    public readonly birthplace?: string;
-    public readonly deathplace?: string;
-    public readonly birthdate?: Date;
-    public readonly deathdate?: Date;
-    public readonly fatherId?: number;
-    public readonly motherId?: number;
+    public firstname?: string;
+    public lastname?: string;
+    public sex?: "MALE" | "FEMALE";
+    public birthplace?: string;
+    public deathplace?: string;
+    public birthdate?: Date;
+    public deathdate?: Date;
+    public fatherId?: number;
+    public motherId?: number;
+    public documents: Set<Document> = new Set();
 
     public constructor(node: INode) {
         this.id = node.id;
@@ -39,6 +41,20 @@ export class Node implements INode {
         this.deathdate = node.deathdate ? new Date(node.deathdate) : undefined;
         this.fatherId = node.fatherId;
         this.motherId = node.motherId;
+    }
+
+    public bindDocument(document: Document) {
+        this.documents.add(document);
+    }
+
+    public unbindDocument(id: number) {
+        for(const document of this.documents) {
+            if(document.id == id) {
+                this.documents.delete(document);
+                return;
+            }
+        }
+        throw new Error("Node doesn't contain a document with id " + id);
     }
 
 }
