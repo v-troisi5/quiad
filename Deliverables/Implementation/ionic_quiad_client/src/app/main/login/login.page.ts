@@ -22,7 +22,7 @@ export class LoginPage implements OnInit {
       .login({ username: "quiad", password: "Quiad&2022", rememberMe: true })
         .subscribe({
           next: (account) => {
-            this.navController.navigateRoot("/main/home");
+            this.navController.navigateRoot("/main/dashboard");
             console.log(account);
           },
           error: (err) => {

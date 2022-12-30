@@ -12,8 +12,11 @@
     </ion-toolbar>
   </ion-header>
 
-<ion-content color="secondary">
-    <ion-card>
-        <ion-card-content></ion-card-content>
-    </ion-card>
+<ion-content class="ion-padding" color="secondary">
+    <div *ngIf="account">
+      <div *ngIf="account.user">
+        <app-node [node]="account.user.node"></app-node>
+        <app-node *ngFor="let node of account.user.tree" [node]="node"></app-node>
+      </div>
+    </div>
 </ion-content>

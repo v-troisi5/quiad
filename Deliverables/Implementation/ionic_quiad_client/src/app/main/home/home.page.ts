@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Account } from 'src/app/account/models/account';
+import { LogoutService } from 'src/app/account/services/logout.service';
 import { AccountProviderService } from 'src/app/services/account-provider.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class HomePage implements OnInit {
 
   constructor(
     private accountProviderService: AccountProviderService,
-    private alertController: AlertController
+    private logoutService: LogoutService
   ) { }
 
   ngOnInit() {
@@ -24,25 +25,7 @@ export class HomePage implements OnInit {
   }
 
   public presentLogoutAlert() {
-    this.alertController
-      .create({
-        message: "Sei sicuro di voler uscire?",
-        translucent: true,
-        buttons: [
-          {
-            text: "Sì",
-            handler: () => {
-
-            }
-          },
-          {
-            text: "Annulla",
-            role: "cancel"
-          }
-        ]
-      }).then(alert => {
-        alert.present();
-      })
+    this.logoutService.logout();
   }
 
 }

@@ -1,5 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import { TreeModule } from 'src/app/tree/tree.module';
 
 import { DashboardPage } from './dashboard.page';
 
@@ -10,7 +12,11 @@ describe('DashboardPage', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DashboardPage ],
-      imports: [IonicModule.forRoot()]
+      imports: [
+        IonicModule.forRoot(),
+        HttpClientTestingModule,
+        TreeModule
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(DashboardPage);

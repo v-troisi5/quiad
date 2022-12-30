@@ -1,5 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { TreeModule } from '../tree.module';
 
 import { TreeService } from './tree.service';
 
@@ -9,7 +10,8 @@ describe('TreeService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        TreeModule
       ]
     });
     service = TestBed.inject(TreeService);

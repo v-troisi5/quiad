@@ -14,5 +14,6 @@ import { MainPageRoutingModule } from './main-routing.module';
     IonicModule,
     MainPageRoutingModule
   ],
+  providers: []
 })
 export class MainPageModule {}

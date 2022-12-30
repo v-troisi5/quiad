@@ -4,12 +4,11 @@ import { RouteReuseStrategy } from '@angular/router'
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular'
 
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app-routing.module'
-
-import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { BearerInterceptor } from './interceptors/bearer.interceptor'
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +19,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing'
     HttpClientModule
   ],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: BearerInterceptor, multi: true },
   ],
   bootstrap: [
     AppComponent

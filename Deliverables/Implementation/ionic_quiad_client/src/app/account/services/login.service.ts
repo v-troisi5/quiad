@@ -21,6 +21,9 @@ export class LoginService {
       .pipe(map(({ account }) => {
         const _account = new Account(account);
         this.accountProviderService.account.next(_account);
+        if(credentials.rememberMe) {
+          localStorage.setItem("token", account.token)
+        }
         return _account;
       }));
   }

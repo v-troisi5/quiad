@@ -4,9 +4,7 @@ import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { INode, Node } from '../models/node';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TreeService {
 
   constructor(private httpClient: HttpClient) { }

@@ -12,7 +12,8 @@ describe('Account', () => {
                 node: {
                     id: 1
                 }
-            }
+            },
+            token: "TEST_TOKEN"
         });
     });
 

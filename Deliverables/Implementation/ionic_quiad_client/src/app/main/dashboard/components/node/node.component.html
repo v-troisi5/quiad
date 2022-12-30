@@ -1,0 +1,38 @@
+<ion-card *ngIf="node">
+  <ion-card-content>
+    <ion-item lines="none">
+      <ion-icon *ngIf="node.sex == 'MALE'" name="male"></ion-icon>
+      <ion-icon *ngIf="node.sex == 'FEMALE'" name="female"></ion-icon>
+      <ion-icon *ngIf="!node.sex" name="help" color="light"></ion-icon>
+      <ion-title>{{ node.firstname }} {{ node.lastname }}</ion-title>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <p *ngIf="node.birthplace">Luogo di nascita</p>
+        <b>{{ node.birthplace }}</b>
+      </ion-label>
+      <ion-label>
+        <p *ngIf="node.birthdate">Data di nascita</p>
+        <b>{{ node.birthdate | date }}</b>
+      </ion-label>
+      <ion-label>
+        <p *ngIf="node.deathplace">Luogo di morte</p>
+        <b>{{ node.deathplace }}</b>
+      </ion-label>
+      <ion-label>
+        <p *ngIf="node.deathdate">Luogo di morte</p>
+        <b>{{ node.deathdate | date }}</b>
+      </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-button color="primary" title="Aggiungi padre" [disabled]="node.fatherId">
+        <ion-icon name="man"></ion-icon>
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+      <ion-button color="danger" slot="end" title="Aggiungi madre" [disabled]="node.motherId">
+        <ion-icon name="woman"></ion-icon>
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-card-content>
+</ion-card>

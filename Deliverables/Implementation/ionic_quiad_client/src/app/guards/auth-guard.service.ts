@@ -16,6 +16,7 @@ export class AuthGuardService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
     return new Promise((resolve, reject) => {
       this.accountProviderService.account.subscribe(account => {
+        console.log(account);
         if(account) resolve(true);
         else {
           this.navController.navigateRoot("/main/login");
