@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { Account } from 'src/app/account/models/account';
 import { LogoutService } from 'src/app/account/services/logout.service';
