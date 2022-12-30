@@ -2,6 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { TreeModule } from 'src/app/tree/tree.module';
+import { NodeComponent } from './components/node/node.component';
 
 import { DashboardPage } from './dashboard.page';
 
@@ -11,7 +12,10 @@ describe('DashboardPage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardPage ],
+      declarations: [
+        DashboardPage,
+        NodeComponent
+      ],
       imports: [
         IonicModule.forRoot(),
         HttpClientTestingModule,

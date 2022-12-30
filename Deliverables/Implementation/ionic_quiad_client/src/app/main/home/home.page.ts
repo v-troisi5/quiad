@@ -3,6 +3,7 @@ import { AlertController } from '@ionic/angular';
 import { Account } from 'src/app/account/models/account';
 import { LogoutService } from 'src/app/account/services/logout.service';
 import { AccountProviderService } from 'src/app/services/account-provider.service';
+import { PresentLogoutAlertService } from 'src/app/services/present-logout-alert.service';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ export class HomePage implements OnInit {
 
   constructor(
     private accountProviderService: AccountProviderService,
-    private logoutService: LogoutService
+    private presentLogoutAlertService: PresentLogoutAlertService
   ) { }
 
   ngOnInit() {
@@ -25,7 +26,7 @@ export class HomePage implements OnInit {
   }
 
   public presentLogoutAlert() {
-    this.logoutService.logout();
+    this.presentLogoutAlertService.presentLogoutAlert();
   }
 
 }

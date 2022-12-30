@@ -10,6 +10,7 @@ import { DashboardPage } from './dashboard.page';
 import { TreeModule } from 'src/app/tree/tree.module';
 import { NodeComponent } from './components/node/node.component';
 import { ModifyNodeComponent } from './components/modify-node/modify-node.component';
+import { AddNodeComponent } from './components/add-node/add-node.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { ModifyNodeComponent } from './components/modify-node/modify-node.compon
   declarations: [
     DashboardPage,
     NodeComponent,
-    ModifyNodeComponent
+    ModifyNodeComponent,
+    AddNodeComponent
   ],
   providers: []
 })

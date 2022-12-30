@@ -4,6 +4,7 @@ export interface IUser {
 
     id: number;
     residence: string;
+    role: any;
     node: INode;
 
 }
@@ -13,6 +14,7 @@ export class User implements IUser {
     public readonly id: number;
     private _residence: string;
     public readonly node: Node;
+    public readonly role: any;
     public readonly tree: Set<Node> = new Set();
 
     public constructor(user: IUser) {

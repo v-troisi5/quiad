@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Account } from 'src/app/account/models/account';
+import { AccountProviderService } from 'src/app/services/account-provider.service';
 import { Node } from 'src/app/tree/models/node';
 import { TreeService } from 'src/app/tree/services/tree.service';
 
@@ -12,9 +15,13 @@ export class ModifyNodeComponent implements OnInit {
   @Input()
   public node?: Node;
 
-  constructor(private treeService: TreeService) { }
+  constructor(
+    private treeService: TreeService,
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   onSubmit() {
     if(this.node) {

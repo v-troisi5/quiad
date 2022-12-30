@@ -12,6 +12,7 @@ describe('Node', () => {
             lastname: "Cafiero",
             birthdate: new Date("1953-11-09").toString(),
             birthplace: "Poggioreale",
+            documents: [],
             sex: "MALE"
         });
         document = new Document({

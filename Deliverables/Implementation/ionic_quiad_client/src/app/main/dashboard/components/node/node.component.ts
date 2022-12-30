@@ -16,6 +16,9 @@ export class NodeComponent implements OnInit {
   @Input()
   public color: string = "";
 
+  @Input()
+  public isUserNode: boolean = false;
+
   constructor(private modalController: ModalController) { }
 
   ngOnInit() {}

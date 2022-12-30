@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { Account } from 'src/app/account/models/account';
 import { LogoutService } from 'src/app/account/services/logout.service';
 import { AccountProviderService } from 'src/app/services/account-provider.service';
+import { PresentLogoutAlertService } from 'src/app/services/present-logout-alert.service';
 import { TreeService } from 'src/app/tree/services/tree.service';
 
 @Component({
@@ -13,7 +14,7 @@ import { TreeService } from 'src/app/tree/services/tree.service';
 export class DashboardPage implements OnInit {
 
   constructor(
-    private logoutService: LogoutService,
+    private presentLogoutAlertService: PresentLogoutAlertService,
     private accountProviderService: AccountProviderService,
     private treeService: TreeService
   ) { }
@@ -38,7 +39,7 @@ export class DashboardPage implements OnInit {
   }
 
   public presentLogoutAlert() {
-    this.logoutService.logout();
+    this.presentLogoutAlertService.presentLogoutAlert();
   }
 
   ngOnDestroy() {
