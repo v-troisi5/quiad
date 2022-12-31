@@ -32,14 +32,16 @@ export class ModifyNodeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.form = {
-      id: this.node!.id!,
-      firstname: this.node?.firstname,
-      lastname: this.node?.lastname,
-      birthdate: this.node?.birthdate?.toISOString().split('T')[0],
-      deathdate: this.node?.deathdate?.toISOString().split('T')[0],
-      birthplace: this.node?.birthplace,
-      deathplace: this.node?.deathplace,
+    if(this.form) {
+      this.form = {
+        id: this.node!.id!,
+        firstname: this.node?.firstname,
+        lastname: this.node?.lastname,
+        birthdate: this.node?.birthdate?.toISOString().split('T')[0],
+        deathdate: this.node?.deathdate?.toISOString().split('T')[0],
+        birthplace: this.node?.birthplace,
+        deathplace: this.node?.deathplace,
+      }
     }
   }
 

@@ -71,7 +71,7 @@ export class TreeService {
   
   public unbindDocument(node: number, document: number) {
     return this.httpClient
-      .put<INode>(environment.apiUrl + environment.paths.nodes + "/" + node + "/bind/" + document, {})
+      .put<INode>(environment.apiUrl + environment.paths.nodes + "/" + node + "/unbind/" + document, {})
       .pipe(
         map((node) => {
           const _ = new Node(node);

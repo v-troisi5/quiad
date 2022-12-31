@@ -6,6 +6,7 @@
       <ion-button (click)="presentLogoutAlert()">Esci</ion-button>
     </ion-buttons>
     <ion-buttons *ngIf="!account" slot="end">
+      <ion-toggle [checked]="isDarkMode" (ionChange)='toggleDarkMode($event)'></ion-toggle>
       <ion-button routerLink="/main/login">Accedi</ion-button>
     </ion-buttons>
   </ion-toolbar>

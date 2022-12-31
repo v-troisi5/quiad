@@ -14,7 +14,7 @@ export class DocumentsPage implements OnInit {
   public documents: Document[] = [];
 
   constructor(
-    private documentService: DocumentService
+    private documentService: DocumentService,
   ) { }
 
   ngOnInit() {

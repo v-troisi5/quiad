@@ -29,7 +29,7 @@ export class Node implements INode {
   public fatherId?: number
   public motherId?: number
   public ownerId?: number
-  public documents?: Set<Document> = new Set()
+  public documents: Set<Document> = new Set()
   public motherHasChildren?: { connect: { id: number } }
   public fatherHasChildren?: { connect: { id: number } }
 

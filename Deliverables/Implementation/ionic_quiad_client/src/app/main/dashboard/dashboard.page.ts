@@ -25,6 +25,7 @@ export class DashboardPage implements OnInit {
       this.treeService
         .getNodes(account.user.id)
         .subscribe(nodes => {
+          account.user.tree.clear();
           for(const node of nodes) {
             account.user.addNode(node);
           }
@@ -46,5 +47,18 @@ export class DashboardPage implements OnInit {
   ngOnDestroy() {
     this.accountSubscription.unsubscribe();
   }
+
+  toggleDarkMode(event: any) {
+    if(event.detail.checked) {
+      document.body.setAttribute("color-theme", "dark");
+    } else {
+      document.body.setAttribute("color-theme", "light");
+    }
+  }
+
+  public get isDarkMode() {
+    return document.body.getAttribute("color-theme") == "dark";
+  }
+
 
 }

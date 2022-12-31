@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -18,6 +18,16 @@ export class DocumentService {
         const _ = documents.map(d => new Document(d));
         return _;
       }));
+  }
+
+  public getDocument(id: number) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/pdf');
+    return this.httpClient
+      .get(environment.apiUrl + environment.paths.documents + "/" + id, {
+        headers: headers,
+        responseType: "blob"
+      });
   }
 
 }

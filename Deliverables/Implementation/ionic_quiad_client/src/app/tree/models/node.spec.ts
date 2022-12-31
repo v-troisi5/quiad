@@ -35,11 +35,20 @@ describe('Node', () => {
         expect(node.documents.has(document)).toBeTrue();
     });
 
-    it("Should bind a document to a node", () => {
+    it("Should unbind a document to a node", () => {
         node.bindDocument(document);
         expect(node.documents.has(document)).toBeTrue();
         node.unbindDocument(document.id);
         expect(node.documents.has(document)).toBeFalse();
+    });
+
+    it("Should not unbind a document to a node", () => {
+        try {
+            node.unbindDocument(document.id);
+            fail()
+        } catch(err) {
+            expect(err).toBeDefined();
+        }
     });
 
 });

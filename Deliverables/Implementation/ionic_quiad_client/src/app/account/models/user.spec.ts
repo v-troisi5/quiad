@@ -60,13 +60,52 @@ describe('User', () => {
     }
   })
 
+  it('Should not modify a non existing node of the user tree', () => {
+    try {
+      user.modifyNode(
+        2,
+        new Node({
+          id: 2,
+          firstname: 'Gennaro',
+          documents: []
+        }),
+      )
+    } catch(err) {
+      expect(err).toBeDefined();
+    }
+  })
+
   it('Should delete a certain node in the user tree', () => {
-    const node = new Node({
+    const child = new Node({
+      id: 3,
+      fatherId: 2,
+      motherId: 4
+    })
+    const father = new Node({
       id: 2,
       documents: []
     })
-    user.addNode(node)
+    const mother = new Node({
+      id: 4,
+      documents: []
+    })
+    user.addNode(child)
+    user.addNode(father)
+    user.addNode(mother)
     user.deleteNode(2)
-    expect(user.tree.has(node)).toBeFalse()
+    user.deleteNode(4)
+    expect(user.tree.has(mother)).toBeFalse()
+    expect(user.tree.has(father)).toBeFalse()
+    expect(child.fatherId).toBeUndefined();
+    expect(child.motherId).toBeUndefined();
   })
+
+  it('Should not delete a non existing node of the user tree', () => {
+    try {
+      user.deleteNode(2)
+    } catch(err) {
+      expect(err).toBeDefined();
+    }
+  })
+
 })

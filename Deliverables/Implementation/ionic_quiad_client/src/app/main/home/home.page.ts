@@ -19,6 +19,7 @@ export class HomePage implements OnInit {
     private presentLogoutAlertService: PresentLogoutAlertService
   ) { }
 
+
   ngOnInit() {
     this.accountProviderService.account.subscribe(account => {
       this.account = account;
@@ -27,6 +28,18 @@ export class HomePage implements OnInit {
 
   public presentLogoutAlert() {
     this.presentLogoutAlertService.presentLogoutAlert();
+  }
+
+  toggleDarkMode(event: any) {
+    if(event.detail.checked) {
+      document.body.setAttribute("color-theme", "dark");
+    } else {
+      document.body.setAttribute("color-theme", "light");
+    }
+  }
+
+  public get isDarkMode() {
+    return document.body.getAttribute("color-theme") == "dark";
   }
 
 }

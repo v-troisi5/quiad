@@ -1,6 +1,8 @@
 import { Document } from "@prisma/client";
 import { prisma } from "../../utils/clients";
 import { DocumentFilter } from "../utils/document.filter";
+import fs from "fs";
+import path from "path"
 
 export class DocumentController {
 
@@ -29,6 +31,24 @@ export class DocumentController {
             data: document
         });
         return createdDocument;
+    }
+
+    public async getDocument(id: number) {
+        const document = await this.prisma.document.findUnique({
+            where: {
+                id: id
+            },
+            select: {
+                path: true
+            }
+        });
+        if(document) {
+            var file = fs.createReadStream(path.join('./documents', document?.path!));
+            var stat = fs.statSync(path.join('./documents', 'output.pdf'));
+            return {file, stat};
+        } else {
+            throw new Error("Cannot find this document");
+        }
     }
 
 }

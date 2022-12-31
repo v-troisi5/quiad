@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/main/documents"></ion-back-button>
+    <ion-title>Documento</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentBindDocumentModal()">
+        <ion-icon name="link-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <pdf-viewer [src]="'http://localhost/documents/1'"
+    [render-text]="true"
+    [original-size]="false"
+    style="width: 200vh; height: 100vh"
+  ></pdf-viewer>
+</ion-content>

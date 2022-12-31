@@ -12,23 +12,15 @@ export interface IUser {
 export class User implements IUser {
 
     public readonly id: number;
-    private _residence: string;
+    public readonly residence: string;
     public readonly node: Node;
     public readonly role: any;
     public readonly tree: Set<Node> = new Set();
 
     public constructor(user: IUser) {
         this.id = user.id;
-        this._residence = user.residence;
+        this.residence = user.residence;
         this.node = new Node(user.node);
-    }
-
-    public get residence() {
-        return this._residence;
-    }
-
-    public set residence(residence: string) {
-        this._residence = residence;
     }
 
     public addNode(node: Node) {

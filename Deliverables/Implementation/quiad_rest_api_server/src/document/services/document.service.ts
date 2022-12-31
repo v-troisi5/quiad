@@ -19,4 +19,17 @@ export class DocumentService {
         res.json(createdDocument);
     }
 
+    public async getDocument(req: Request, res: Response, next: NextFunction): Promise<void> {
+        const id = parseInt(req.params.id);
+        try {
+            const result = await this.documentController.getDocument(id);
+            res.setHeader('Content-Length', result.stat.size);
+            res.setHeader('Content-Type', 'application/pdf');
+            res.setHeader('Content-Disposition', 'attachment; filename=quote.pdf');
+            result.file.pipe(res);
+        } catch(err) {
+            res.status(404).send()
+        }
+    }
+
 }

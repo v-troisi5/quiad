@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Collega nodo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="account">
+    <ion-radio-group [(ngModel)]="node">
+      <ion-item *ngFor="let node of account.user.tree">
+        {{ node.firstname }} {{ node.lastname }}
+        <ion-radio slot="end" value="{{ node.id }}"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-button [disabled]="!node" (click)="onSubmit()" expand="block">Collega</ion-button>
+</ion-footer>

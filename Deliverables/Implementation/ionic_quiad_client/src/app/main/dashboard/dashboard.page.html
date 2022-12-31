@@ -7,6 +7,8 @@
           </ion-buttons>
         <ion-title>Pagina principale | Quiad</ion-title>
         <ion-buttons slot="end">
+          <ion-label>Dark Mode</ion-label>
+          <ion-toggle color="dark" [checked]="isDarkMode" (ionChange)='toggleDarkMode($event)'></ion-toggle>
           <ion-button routerLink="/main/documents">
             <ion-icon name="search"></ion-icon>
           </ion-button>
@@ -22,4 +24,5 @@
         <app-node *ngFor="let node of account.user.tree" [node]="node"></app-node>
       </div>
     </div>
+    <app-footer></app-footer>
 </ion-content>

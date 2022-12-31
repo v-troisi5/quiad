@@ -12,7 +12,9 @@ import { MainPageRoutingModule } from './main-routing.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    MainPageRoutingModule
+    MainPageRoutingModule,
+  ],
+  declarations: [
   ],
   providers: []
 })

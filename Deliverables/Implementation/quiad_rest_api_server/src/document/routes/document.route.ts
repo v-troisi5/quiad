@@ -21,6 +21,9 @@ export class DocumentRoute extends Route {
         this.app.post("/", this.authMiddleware.filter("document:create"), (req, res, next) => {
             this.documentService.createDocument(req, res, next);
         });
+        this.app.get("/:id", (req, res, next) => {
+            this.documentService.getDocument(req, res, next);
+        });
     }
 
 }

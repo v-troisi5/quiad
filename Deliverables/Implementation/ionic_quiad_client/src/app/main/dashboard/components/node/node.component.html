@@ -43,5 +43,15 @@
         <ion-icon name="add"></ion-icon>
       </ion-button>
     </ion-item>
+    <ion-item [color]="color">
+      <div *ngFor="let document of node.documents">
+        <ion-button title="{{document.name}}" routerLink="/main/documents/{{document.id}}">
+          <ion-icon name="document"></ion-icon>
+        </ion-button>
+        <ion-button color="danger" (click)="presentUnbindDocumentAlert(document.id)">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-item>
   </ion-card-content>
 </ion-card>

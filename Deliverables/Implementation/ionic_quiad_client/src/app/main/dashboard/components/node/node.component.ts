@@ -101,6 +101,31 @@ export class NodeComponent implements OnInit {
     })
   }
 
+  public presentUnbindDocumentAlert(document: number) {
+    this.alertController
+      .create({
+        message: "Vuoi scollegare il documento dal nodo?",
+        buttons: [
+          {
+            text: "Sì",
+            handler: () => {
+              this.treeService
+                .unbindDocument(this.node!.id!, document)
+                .subscribe(node => {
+                  this.node!.unbindDocument(document);
+                });
+            }
+          },
+          {
+            text: "Annulla",
+            role: "cancel"
+          }
+        ]
+      }).then(alert => {
+        alert.present();
+      })
+  }
+
   ngOnDestroy() {
     this.accountSubscription?.unsubscribe();
   }

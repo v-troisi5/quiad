@@ -43,7 +43,14 @@
   <ion-card *ngFor="let document of documents">
     <ion-card-content>
       <ion-title>{{ document.name }}</ion-title>
+      <ion-buttons>
+        <ion-button routerLink="/main/documents/{{document.id}}">A</ion-button>
+      </ion-buttons>
     </ion-card-content>
   </ion-card>
 
 </ion-content>
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

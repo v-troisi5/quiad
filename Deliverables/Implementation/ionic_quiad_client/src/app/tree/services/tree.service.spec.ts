@@ -104,13 +104,14 @@ describe('TreeService', () => {
         firstname: "Mario",
         lastname: "Rossi",
         ownerId: 1,
+        deathdate: new Date("1990-01-01").toString(),
         documents: [
           {
             id: 1,
             categoryId: 1,
             name: "Registro delle nascite",
-            retrievalDate: new Date().toString(),
-            originDate: new Date().toString(),
+            retrievalDate: new Date("1990-01-01").toString(),
+            originDate: new Date("1900-01-01").toString(),
             originPlace: "Salerno",
             retrievalPlace: "Salerno"
           }

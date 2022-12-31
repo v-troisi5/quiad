@@ -1,5 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { TreeModule } from 'src/app/tree/tree.module';
 
@@ -15,7 +16,8 @@ describe('ModifyNodeComponent', () => {
       imports: [
         IonicModule.forRoot(),
         TreeModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        FormsModule
       ]
     }).compileComponents();
 
