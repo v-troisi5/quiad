@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from "express";
 import { AccountController } from "../controllers/account.controller";
 import bcrypt from "bcrypt";
 import { Prisma } from "@prisma/client";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 
 export class RegistrationService {
 
@@ -15,7 +14,23 @@ export class RegistrationService {
             const account = await this.accountController.createAccount(_);
             res.json(account);
         } catch(err) {
-            res.status(500).json(null);
+            if(err instanceof Prisma.PrismaClientKnownRequestError) {
+                if(err.code == "P2002") {
+                    if(err.meta?.target == "Account_email_key") {
+                        res.status(409).json({
+                            message: "L'email è già in utilizzo"
+                        });
+                    } else if(err.meta?.target == "Account_username_key") {
+                        res.status(409).json({
+                            message: "Questo username è già in utilizzo"
+                        });
+                    } else {
+                        res.status(500).json(null);
+                    }
+                }
+            } else {
+                res.status(500).json(null);
+            }
         }
     }
 
