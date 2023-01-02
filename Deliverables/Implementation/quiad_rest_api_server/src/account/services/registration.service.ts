@@ -22,7 +22,7 @@ export class RegistrationService {
                         });
                     } else if(err.meta?.target == "Account_username_key") {
                         res.status(409).json({
-                            message: "Questo username è già in utilizzo"
+                            message: "Username già esistente"
                         });
                     } else {
                         res.status(500).json(null);

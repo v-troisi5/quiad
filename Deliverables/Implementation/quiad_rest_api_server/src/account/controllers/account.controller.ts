@@ -42,7 +42,21 @@ export class AccountController {
                                 birthplace: true,
                                 sex: true,
                                 fatherId: true,
-                                motherId: true
+                                motherId: true,
+                                father: {
+                                    select: {
+                                        id: true,
+                                        firstname: true,
+                                        lastname: true
+                                    }
+                                },
+                                mother: {
+                                    select: {
+                                        id: true,
+                                        firstname: true,
+                                        lastname: true
+                                    }
+                                },
                             }
                         },
                         curator: true

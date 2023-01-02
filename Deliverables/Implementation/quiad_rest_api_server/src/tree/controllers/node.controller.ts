@@ -26,7 +26,21 @@ export class NodeController {
                     }
                 },
                 fatherId: true,
+                father: {
+                    select: {
+                        id: true,
+                        firstname: true,
+                        lastname: true,
+                    }
+                },
                 motherId: true,
+                mother: {
+                    select: {
+                        id: true,
+                        firstname: true,
+                        lastname: true,
+                    }    
+                },
                 ownerId: true,
                 sex: true
             }
@@ -54,7 +68,21 @@ export class NodeController {
                         id: true,
                         name: true
                     }
-                }
+                },
+                father: {
+                    select: {
+                        id: true,
+                        firstname: true,
+                        lastname: true,
+                    }
+                },
+                mother: {
+                    select: {
+                        id: true,
+                        firstname: true,
+                        lastname: true,
+                    }    
+                },
             }
         });
         return createdNode as Node;
