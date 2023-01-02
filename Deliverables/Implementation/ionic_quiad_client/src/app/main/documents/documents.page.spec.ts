@@ -2,6 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { ComponentsModule } from '../components/components.module';
 
 import { DocumentsPage } from './documents.page';
 
@@ -15,7 +16,8 @@ describe('DocumentsPage', () => {
       imports: [
         IonicModule.forRoot(),
         HttpClientTestingModule,
-        FormsModule
+        FormsModule,
+        ComponentsModule
       ]
     }).compileComponents();
 

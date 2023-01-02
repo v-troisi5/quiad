@@ -15,7 +15,6 @@ export class DetailsPage implements OnInit {
 
   constructor(
     private activateRoute: ActivatedRoute,
-    private documentService: DocumentService,
     private modalController: ModalController
   ) {
 

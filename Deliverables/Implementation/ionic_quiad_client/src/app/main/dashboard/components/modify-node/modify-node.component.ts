@@ -32,7 +32,7 @@ export class ModifyNodeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if(this.form) {
+    if(this.node) {
       this.form = {
         id: this.node!.id!,
         firstname: this.node?.firstname,
