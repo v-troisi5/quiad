@@ -22,6 +22,7 @@ export class PresentLogoutAlertService {
       buttons: [
         {
           text: "Sì",
+          id: "confirm-logout",
           handler: () => {
             this.logoutService
               .logout()

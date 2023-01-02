@@ -52,6 +52,13 @@ export class User implements IUser {
         for(const node of this.tree) {
             if(node.id == id) {
                 this.tree.delete(node);
+                if(this.node.fatherId == id) {
+                    this.node.fatherId = undefined;
+                    return;
+                } else if(this.node.motherId == id) {
+                    this.node.motherId = undefined;
+                    return;
+                }
                 for(const node of this.tree) {
                     if(node.fatherId == id) {
                         node.fatherId = undefined;

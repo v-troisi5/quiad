@@ -11,6 +11,44 @@
 
 <ion-content color="medium">
 
-  <ion-button (click)="onSubmit()"></ion-button>
+    <ion-grid>
+      <ion-row justify-content-center>
+          <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+              <div text-center>
+                  <h3>Effettua l'accesso</h3>
+              </div>
+              <div padding>
+                  <form (ngSubmit)="onSubmit(loginForm.value)" #loginForm="ngForm">
+
+                      <ion-item>
+                          <ion-label>Username</ion-label>
+                          <ion-input name="username" id="username" [(ngModel)]="loginCredentials.username" placeholder="Inserisci il tuo indirizzo Username" #email="ngModel" required></ion-input>
+                      </ion-item>
+
+                      <ion-item>
+                          <ion-label>Password</ion-label>
+                          <ion-input name="password" id="password" [(ngModel)]="loginCredentials.password" type="password" placeholder="Inserisci la tua password" #password="ngModel" required></ion-input>
+                      </ion-item>
+
+                      <ion-item>
+                          <ion-checkbox id="rememberMe" name="rememberMe" [(ngModel)]="loginCredentials.rememberMe" #remember_session="ngModel"></ion-checkbox>
+                          Ricordati di me
+                      </ion-item>
+
+                      <p style="color: red" id="error">{{ error }}</p>
+
+                      <ion-button type="submit" size="block" [disabled]="!loginForm.valid || isLoading">
+                          <p *ngIf="!isLoading">Accedi</p>
+                          <ion-spinner *ngIf="isLoading" name="lines"></ion-spinner>
+                      </ion-button>
+
+                      <p><a href="/main/register">Non hai un account? Registrati ora!</a></p>
+
+                  </form>
+              </div>
+
+          </ion-col>
+      </ion-row>
+  </ion-grid>
 
 </ion-content>

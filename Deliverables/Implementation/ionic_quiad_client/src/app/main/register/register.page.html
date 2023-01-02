@@ -1,0 +1,113 @@
+<ion-header color="medium">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/main/home" routerDirection="root">
+        <ion-icon name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Accedi a Quiad</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="medium">
+
+    <ion-grid>
+      <ion-row justify-content-center>
+          <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+              <div text-center>
+                  <h3>Effettua l'accesso</h3>
+              </div>
+              <div padding>
+                  <form (ngSubmit)="onSubmit(registrationForm.value)" #registrationForm="ngForm">
+
+                      <ion-item [lines]="firstnameError ? 'none' : 'full'">
+                          <ion-label>Nome</ion-label>
+                          <ion-input (change)="validateFirstname()" name="firstname" id="firstname" [(ngModel)]="registrationAccount.user.node.firstname" placeholder="Inserisci il tuo nome" #email="ngModel" required></ion-input>
+                      </ion-item>
+                      <ion-item *ngIf="firstnameError">
+                        <ion-text color="danger" id="firstnameError">{{ firstnameError }}</ion-text>
+                      </ion-item>
+
+                      <ion-item [lines]="lastnameError ? 'none' : 'full'">
+                        <ion-label>Cognome</ion-label>
+                        <ion-input (change)="validateLastname()" name="lastname" id="lastname" [(ngModel)]="registrationAccount.user.node.lastname" placeholder="Inserisci il tuo cognome" #email="ngModel" required></ion-input>
+                      </ion-item>
+                      <ion-item *ngIf="lastnameError">
+                        <ion-text color="danger" id="lastnameError">{{ lastnameError }}</ion-text>
+                      </ion-item>
+
+                      <ion-item [lines]="sexError ? 'none' : 'full'">
+                        <ion-label>Sesso</ion-label>
+                        <ion-select (ionDismiss)="validateSex()" name="sex" id="sex" [(ngModel)]="registrationAccount.user.node.sex">
+                          <ion-select-option value="MALE">M</ion-select-option>
+                          <ion-select-option value="FEMALE">F</ion-select-option>
+                        </ion-select>
+                      </ion-item>
+                      <ion-item *ngIf="sexError">
+                        <ion-text color="danger" id="sexError">{{ sexError }}</ion-text>
+                      </ion-item>
+
+                      <ion-item [lines]="emailError ? 'none' : 'full'">
+                          <ion-label>Email</ion-label>
+                          <ion-input (change)="validateEmail()" type="email" email name="email" id="email" [(ngModel)]="registrationAccount.email" placeholder="Inserisci il tuo indirizzo Email" #email="ngModel" required></ion-input>
+                      </ion-item>
+                      <ion-item *ngIf="emailError">
+                        <ion-text color="danger" id="emailError">{{ emailError }}</ion-text>
+                      </ion-item>
+
+                      <ion-item [lines]="usernameError ? 'none' : 'full'">
+                        <ion-label position="floating">Username</ion-label>
+                        <ion-input (change)="validateUsername()" autocomplete="off" name="username" id="username" [(ngModel)]="registrationAccount.username" placeholder="Inserisci il tuo Username" #username="ngModel" required></ion-input>
+                      </ion-item>
+                      <ion-item *ngIf="usernameError">
+                        <ion-text color="danger" id="usernameError">{{ usernameError }}</ion-text>
+                      </ion-item>
+
+                      <ion-item>
+                          <ion-label>Residenza</ion-label>
+                          <ion-input autocomplete="off" name="residence" id="residence" [(ngModel)]="registrationAccount.user.residence" placeholder="Inserisci il tuo indirizzo" #residence="ngModel" required></ion-input>
+                      </ion-item>
+
+                      <ion-item>
+                          <ion-label>Data di nascita</ion-label>
+                          <ion-input autocomplete="off" type="date" name="birthdate" id="birthdate" [(ngModel)]="registrationAccount.user.node.birthdate" placeholder="Inserisci la tua data di nascita" #birthdate="ngModel" required></ion-input>
+                      </ion-item>
+
+                      <ion-item>
+                          <ion-label>Luogo di nascita</ion-label>
+                          <ion-input autocomplete="off" name="birthplace" id="birthplace" [(ngModel)]="registrationAccount.user.node.birthplace" placeholder="Inserisci il tuo luogo di nascita" #birthplace="ngModel" required></ion-input>
+                      </ion-item>
+
+                      <ion-item [lines]="passwordError ? 'none' : 'full'">
+                          <ion-label>Password</ion-label>
+                          <ion-input (change)="validatePassword()" autocomplete="new-password" name="password" id="password" [(ngModel)]="registrationAccount.password" type="password" placeholder="Inserisci la tua password" #password="ngModel" required></ion-input>
+                      </ion-item>
+                      <ion-item *ngIf="passwordError">
+                        <ion-text color="danger" id="passwordError">{{ passwordError }}</ion-text>
+                      </ion-item>
+
+                      <ion-item [lines]="confirmPasswordError ? 'none' : 'full'">
+                        <ion-label>Conferma password</ion-label>
+                        <ion-input (change)="validateConfirmPassword()" autocomplete="new-password" name="confirmPassword" id="confirmPassword" [(ngModel)]="_confirmPassword" type="password" placeholder="Conferma la tua password" #confirmPassword="ngModel" required></ion-input>
+                      </ion-item>
+                      <ion-item *ngIf="confirmPasswordError">
+                        <ion-text color="danger" id="confirmPasswordError">{{ confirmPasswordError }}</ion-text>
+                      </ion-item>
+
+                      <p style="color: red" id="error">{{ error }}</p>
+
+                      <ion-button id="submit-button" type="submit" size="block" [disabled]="!registrationForm.valid || isLoading">
+                          <p *ngIf="!isLoading">Registrati</p>
+                          <ion-spinner *ngIf="isLoading" name="lines"></ion-spinner>
+                      </ion-button>
+
+                      <p><a href="/main/login">Hai già un account? Accedi!</a></p>
+
+                  </form>
+              </div>
+
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+
+</ion-content>

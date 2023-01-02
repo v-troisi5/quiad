@@ -33,7 +33,7 @@ export interface RegistrationAccount {
       lastname: string;
       birthplace: string;
       birthdate: string;
-      sex: "MALE" | "FEMALE";
+      sex?: "MALE" | "FEMALE";
     }
   }
 

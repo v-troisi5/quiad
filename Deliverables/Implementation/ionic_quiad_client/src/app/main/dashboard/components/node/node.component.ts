@@ -91,8 +91,8 @@ export class NodeComponent implements OnInit {
         relation: {
           motherHasChildren: relation.motherHasChildren ? { connect: { id: relation.motherHasChildren } } : undefined,
           fatherHasChildren: relation.fatherHasChildren ? { connect: { id: relation.fatherHasChildren } } : undefined,
-          fatherId: relation.fatherId,
-          motherId: relation.motherId
+          fatherId: parent.sex == "MALE" ? relation.fatherId : undefined,
+          motherId: parent.sex == "FEMALE" ? relation.motherId : undefined
         },
         parent
       }

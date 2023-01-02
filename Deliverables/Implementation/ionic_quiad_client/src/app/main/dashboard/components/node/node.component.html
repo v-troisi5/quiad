@@ -29,18 +29,24 @@
         <b>{{ node.deathplace }}</b>
       </ion-label>
       <ion-label>
-        <p *ngIf="node.deathdate">Luogo di morte</p>
+        <p *ngIf="node.deathdate">Data di morte</p>
         <b>{{ node.deathdate | date }}</b>
       </ion-label>
     </ion-item>
     <ion-item lines="none" [color]="color">
-      <ion-button color="primary" title="Aggiungi padre di {{node.firstname}} {{node.lastname}}" (click)="presentAddNodeModal({ fatherHasChildren: node.id }, node)" [disabled]="node.fatherId">
+      <ion-button id="addFather" color="primary" title="Aggiungi padre di {{node.firstname}} {{node.lastname}}" (click)="presentAddNodeModal({ fatherHasChildren: node.id }, node)" [disabled]="node.fatherId">
         <ion-icon name="man"></ion-icon>
+        <ion-icon *ngIf="!node.fatherId" name="add"></ion-icon>
+        <ion-text id="father-label" *ngIf="node.fatherId">{{ node.father?.firstname }} {{ node.father?.lastname }}</ion-text>
+      </ion-button>
+      <ion-button id="addChild" color="medium" title="Aggiungi figlio di {{node.firstname}} {{node.lastname}}" (click)="presentAddNodeModal({ fatherId: node.id, motherId: node.id }, node)">
+        <ion-icon name="accessibility"></ion-icon>
         <ion-icon name="add"></ion-icon>
       </ion-button>
-      <ion-button color="danger" slot="end" title="Aggiungi madre di {{node.firstname}} {{node.lastname}}" (click)="presentAddNodeModal({ motherHasChildren: node.id }, node)" [disabled]="node.motherId">
+      <ion-button id="addMother" color="danger" title="Aggiungi madre di {{node.firstname}} {{node.lastname}}" (click)="presentAddNodeModal({ motherHasChildren: node.id }, node)" [disabled]="node.motherId">
         <ion-icon name="woman"></ion-icon>
-        <ion-icon name="add"></ion-icon>
+        <ion-icon *ngIf="!node.motherId" name="add"></ion-icon>
+        <ion-text id="mother-label" *ngIf="node.motherId">{{ node.mother?.firstname }} {{ node.mother?.lastname }}</ion-text>
       </ion-button>
     </ion-item>
     <ion-item [color]="color">

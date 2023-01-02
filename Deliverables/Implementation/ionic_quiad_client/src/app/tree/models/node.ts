@@ -12,6 +12,8 @@ export interface INode {
   fatherId?: number
   motherId?: number
   ownerId?: number
+  father?: Node;
+  mother?: Node;
   documents?: Set<IDocument> | IDocument[]
   motherHasChildren?: { connect: { id: number } }
   fatherHasChildren?: { connect: { id: number } }
@@ -32,6 +34,8 @@ export class Node implements INode {
   public documents: Set<Document> = new Set()
   public motherHasChildren?: { connect: { id: number } }
   public fatherHasChildren?: { connect: { id: number } }
+  public father?: Node;
+  public mother?: Node;
 
   public constructor(node: INode) {
     this.id = node.id
@@ -45,6 +49,8 @@ export class Node implements INode {
     this.fatherId = node.fatherId
     this.motherId = node.motherId
     this.ownerId = node.ownerId
+    this.father = node.father ? new Node(node.father) : undefined;
+    this.mother = node.mother ? new Node(node.mother) : undefined;
     if (node.documents) {
       this.documents = new Set(
         (node.documents as Document[]).map((d) => new Document(d)),
@@ -53,6 +59,7 @@ export class Node implements INode {
     this.motherHasChildren = node.motherHasChildren
     this.fatherHasChildren = node.fatherHasChildren
   }
+  
 
   public bindDocument(document: Document) {
     this.documents!.add(document)

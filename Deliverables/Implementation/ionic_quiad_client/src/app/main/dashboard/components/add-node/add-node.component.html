@@ -6,14 +6,20 @@
 
 <ion-content>
 
-  <ion-item>
+  <ion-item [lines]="firstnameError ? 'none' : 'full'">
     <ion-label position="floating">Nome</ion-label>
-    <ion-input [(ngModel)]="node.firstname" name="firstname" id="firstname" placeholder="Nome del nodo"></ion-input>
+    <ion-input (change)="validateFirstname()" [(ngModel)]="node.firstname" name="firstname" id="firstname" placeholder="Nome del nodo"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="firstnameError">
+    <ion-text color="danger" id="firstnameError">{{ firstnameError }}</ion-text>
   </ion-item>
 
-  <ion-item>
+  <ion-item [lines]="lastnameError ? 'none' : 'full'">
     <ion-label position="floating">Cognome</ion-label>
-    <ion-input [(ngModel)]="node.lastname" name="lastname" id="lastname" placeholder="Cognome del nodo"></ion-input>
+    <ion-input (change)="validateLastname()" [(ngModel)]="node.lastname" name="lastname" id="lastname" placeholder="Cognome del nodo"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="lastnameError">
+    <ion-text color="danger" id="lastnameError">{{ lastnameError }}</ion-text>
   </ion-item>
 
   <ion-item lines="none">
@@ -36,11 +42,31 @@
     <ion-input type="date" [(ngModel)]="node.deathdate" name="deathdate" id="deathdate" placeholder="Data di morte del nodo"></ion-input>
   </ion-item>
 
+  <ion-item>
+    <ion-label position="floating">Sesso</ion-label>
+    <ion-select [(ngModel)]="node.sex" name="sex" id="sex" [disabled]="disableSex">
+      <ion-select-option value="MALE">M</ion-select-option>
+      <ion-select-option value="FEMALE">F</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="relation?.motherId">
+    <ion-label>Madre: {{ parent?.firstname }} {{ parent?.lastname }}</ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="relation?.fatherId" disabled>
+    <ion-label>Padre: {{ parent?.firstname }} {{ parent?.lastname }}</ion-label>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-text color="danger" *ngIf="error">{{error}}</ion-text>
+  </ion-item>
+
 </ion-content>
 
 <ion-footer>
-  <ion-button expand="block" (click)="onSubmit()">
-    <ion-icon name="save" slot="start"></ion-icon>
-    Salva
+  <ion-button id="add-node" expand="block" (click)="onSubmit()">
+    <ion-icon name="add" slot="start"></ion-icon>
+    Aggiungi nodo
   </ion-button>
 </ion-footer>
