@@ -64,6 +64,7 @@ export class NodeComponent implements OnInit {
               .deleteNode(node.id!)
               .subscribe(node => {
                 this.account?.user.deleteNode(node.id!);
+                this.accountProviderService.save(this.account);
                 this.toastController.create({
                   message: "Il nodo è stato eliminato",
                   duration: 1000,

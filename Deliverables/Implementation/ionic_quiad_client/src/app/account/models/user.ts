@@ -32,6 +32,14 @@ export class User implements IUser {
     }
 
     public modifyNode(id: number, modifiedNode: Node) {
+        if(this.node.fatherId == id) {
+            this.node.father!.firstname = modifiedNode.firstname;
+            this.node.father!.lastname = modifiedNode.lastname;
+        }
+        if(this.node.motherId == id) {
+            this.node.mother!.firstname = modifiedNode.firstname;
+            this.node.mother!.lastname = modifiedNode.lastname;
+        }
         for(const node of this.tree) {
             if(node.id == id) {
                 node.firstname = modifiedNode.firstname ?? node.firstname;
@@ -42,10 +50,16 @@ export class User implements IUser {
                 node.deathplace = modifiedNode.deathplace ?? node.deathplace;
                 node.motherId = modifiedNode.motherId ?? node.motherId;
                 node.fatherId = modifiedNode.fatherId ?? node.fatherId;
-                return;
+            }
+            if(node.fatherId == id) {
+                node.father!.firstname = modifiedNode.firstname;
+                node.father!.lastname = modifiedNode.lastname;
+            }
+            if(node.motherId == id) {
+                node.mother!.firstname = modifiedNode.firstname;
+                node.mother!.lastname = modifiedNode.lastname;
             }
         }
-        throw new Error("Tree doesn't contain a node with id " + id);
     }
 
     public deleteNode(id: number) {

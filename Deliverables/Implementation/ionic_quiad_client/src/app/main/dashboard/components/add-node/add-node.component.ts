@@ -127,7 +127,8 @@ export class AddNodeComponent implements OnInit {
               lastname: node.lastname
             })
           }
-          this.account?.user.addNode(node)
+          this.account?.user.addNode(node);
+          this.accountProviderService.save(this.account);
         })
     }
   }

@@ -31,6 +31,10 @@ export class ModifyNodeComponent implements OnInit {
     private modalController: ModalController,
   ) {}
 
+  public dismissModal() {
+    this.modalController.dismiss();
+  }
+
   ngOnInit() {
     if(this.node) {
       this.form = {
@@ -45,12 +49,62 @@ export class ModifyNodeComponent implements OnInit {
     }
   }
 
+  validateFirstname() {
+    if(this.form) {
+      if(this.form.firstname) {
+        if(/^[a-zA-Z ]{2,50}$/.test(this.form.firstname)) {
+          this.firstnameError = undefined;
+        } else {
+          this.firstnameError = "Il nome può contenere solo caratteri alfabetici e dev’essere compreso tra 2 e 50 caratteri"
+          return false;
+        }
+      }
+      return true;
+    }
+    return false;
+  }
+
+  validateLastname() {
+    if(this.form) {
+      if(this.form.lastname) {
+        if(/^[a-zA-Z ]{2,50}$/.test(this.form.lastname)) {
+          this.lastnameError = undefined;
+        } else {
+          this.lastnameError = "Il cognome può contenere solo caratteri alfabetici e dev’essere compreso tra 2 e 50 caratteri"
+          return false;
+        }
+      }
+      return true;
+    }
+    return false;
+  }
+
+  public error?: string;
+  public firstnameError?: string;
+  public lastnameError?: string;
+
   onSubmit() {
     if (this.node) {
+      const validateFirstname = this.validateFirstname();
+      const validateLastname = this.validateLastname();
+      if(!validateFirstname) {
+        return;
+      }
+      if(!validateLastname) {
+        return;
+      }
+      const node = new Node(this.form!);
+      if(node.birthdate && node.deathdate) {
+        if(node.birthdate > node.deathdate) {
+          this.error = "La data di decesso non può essere antecedente a quella di nascita.";
+          return;
+        }
+      }
       this.treeService
-        .modifyNode(this.node.id!, new Node(this.form!))
+        .modifyNode(this.node.id!, node)
         .subscribe((node) => {
           this.account?.user.modifyNode(this.node!.id!, node)
+          this.accountProviderService.save(this.account);
           this.toastController
             .create({
               message: 'Modificato',

@@ -22,7 +22,8 @@ export class LoginService {
         const _account = new Account(account);
         this.accountProviderService.account.next(_account);
         if(credentials.rememberMe) {
-          localStorage.setItem("token", account.token)
+          localStorage.setItem("token", account.token);
+          this.accountProviderService.save(_account);
         }
         return _account;
       }));

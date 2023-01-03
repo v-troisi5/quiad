@@ -1,19 +1,30 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Modifica nodo</ion-title>
+    <ion-buttons slot="end">
+      <ion-button id="dismiss-modal" (click)="dismissModal()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content *ngIf="form">
 
-  <ion-item>
+  <ion-item [lines]="firstnameError ? 'none' : 'full'">
     <ion-label position="floating">Nome</ion-label>
-    <ion-input [(ngModel)]="form.firstname" name="firstname" id="firstname" placeholder="Nome del nodo"></ion-input>
+    <ion-input (change)="validateFirstname()" [(ngModel)]="form.firstname" name="firstname" id="firstname" placeholder="Nome del nodo"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="firstnameError">
+    <ion-text color="danger" id="firstnameError">{{ firstnameError }}</ion-text>
   </ion-item>
 
-  <ion-item>
+  <ion-item [lines]="lastnameError ? 'none' : 'full'">
     <ion-label position="floating">Cognome</ion-label>
-    <ion-input [(ngModel)]="form.lastname" name="lastname" id="lastname" placeholder="Cognome del nodo"></ion-input>
+    <ion-input (change)="validateLastname()" [(ngModel)]="form.lastname" name="lastname" id="lastname" placeholder="Cognome del nodo"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="lastnameError">
+    <ion-text color="danger" id="lastnameError">{{ lastnameError }}</ion-text>
   </ion-item>
 
   <ion-item lines="none">
@@ -34,6 +45,10 @@
   <ion-item>
     <ion-label position="floating">Data di morte</ion-label>
     <ion-input type="date" [(ngModel)]="form.deathdate" name="deathdate" id="deathdate" placeholder="Data di morte del nodo"></ion-input>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-text color="danger" *ngIf="error">{{error}}</ion-text>
   </ion-item>
 
 </ion-content>
