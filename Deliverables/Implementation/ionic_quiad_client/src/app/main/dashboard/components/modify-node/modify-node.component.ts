@@ -52,7 +52,7 @@ export class ModifyNodeComponent implements OnInit {
   validateFirstname() {
     if(this.form) {
       if(this.form.firstname) {
-        if(/^[a-zA-Z ]{2,50}$/.test(this.form.firstname)) {
+        if(/^[a-zA-Z '-]{2,50}$/.test(this.form.firstname)) {
           this.firstnameError = undefined;
         } else {
           this.firstnameError = "Il nome può contenere solo caratteri alfabetici e dev’essere compreso tra 2 e 50 caratteri"
@@ -67,7 +67,7 @@ export class ModifyNodeComponent implements OnInit {
   validateLastname() {
     if(this.form) {
       if(this.form.lastname) {
-        if(/^[a-zA-Z ]{2,50}$/.test(this.form.lastname)) {
+        if(/^[a-zA-Z '-]{2,50}$/.test(this.form.lastname)) {
           this.lastnameError = undefined;
         } else {
           this.lastnameError = "Il cognome può contenere solo caratteri alfabetici e dev’essere compreso tra 2 e 50 caratteri"

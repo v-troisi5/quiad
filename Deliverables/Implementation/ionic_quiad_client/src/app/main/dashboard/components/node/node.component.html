@@ -53,6 +53,7 @@
       <div *ngFor="let document of node.documents">
         <ion-button title="{{document.name}}" routerLink="/main/documents/{{document.id}}">
           <ion-icon name="document"></ion-icon>
+          <span>{{ document.name }}</span>
         </ion-button>
         <ion-button color="danger" (click)="presentUnbindDocumentAlert(document.id)">
           <ion-icon name="close"></ion-icon>

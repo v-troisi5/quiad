@@ -22,7 +22,7 @@
 
                       <ion-item [lines]="firstnameError ? 'none' : 'full'">
                           <ion-label>Nome</ion-label>
-                          <ion-input (change)="validateFirstname()" name="firstname" id="firstname" [(ngModel)]="registrationAccount.user.node.firstname" placeholder="Inserisci il tuo nome" #email="ngModel" required></ion-input>
+                          <ion-input (ionChange)="validateFirstname()" name="firstname" id="firstname" [(ngModel)]="registrationAccount.user.node.firstname" placeholder="Inserisci il tuo nome" #email="ngModel" required></ion-input>
                       </ion-item>
                       <ion-item *ngIf="firstnameError">
                         <ion-text color="danger" id="firstnameError">{{ firstnameError }}</ion-text>
@@ -30,7 +30,7 @@
 
                       <ion-item [lines]="lastnameError ? 'none' : 'full'">
                         <ion-label>Cognome</ion-label>
-                        <ion-input (change)="validateLastname()" name="lastname" id="lastname" [(ngModel)]="registrationAccount.user.node.lastname" placeholder="Inserisci il tuo cognome" #email="ngModel" required></ion-input>
+                        <ion-input (ionChange)="validateLastname()" name="lastname" id="lastname" [(ngModel)]="registrationAccount.user.node.lastname" placeholder="Inserisci il tuo cognome" #email="ngModel" required></ion-input>
                       </ion-item>
                       <ion-item *ngIf="lastnameError">
                         <ion-text color="danger" id="lastnameError">{{ lastnameError }}</ion-text>
@@ -49,7 +49,7 @@
 
                       <ion-item [lines]="emailError ? 'none' : 'full'">
                           <ion-label>Email</ion-label>
-                          <ion-input (change)="validateEmail()" type="email" email name="email" id="email" [(ngModel)]="registrationAccount.email" placeholder="Inserisci il tuo indirizzo Email" #email="ngModel" required></ion-input>
+                          <ion-input (ionChange)="validateEmail()" type="email" email name="email" id="email" [(ngModel)]="registrationAccount.email" placeholder="Inserisci il tuo indirizzo Email" #email="ngModel" required></ion-input>
                       </ion-item>
                       <ion-item *ngIf="emailError">
                         <ion-text color="danger" id="emailError">{{ emailError }}</ion-text>
@@ -57,7 +57,7 @@
 
                       <ion-item [lines]="usernameError ? 'none' : 'full'">
                         <ion-label position="floating">Username</ion-label>
-                        <ion-input (change)="validateUsername()" autocomplete="off" name="username" id="username" [(ngModel)]="registrationAccount.username" placeholder="Inserisci il tuo Username" #username="ngModel" required></ion-input>
+                        <ion-input (ionChange)="validateUsername()" autocomplete="off" name="username" id="username" [(ngModel)]="registrationAccount.username" placeholder="Inserisci il tuo Username" #username="ngModel" required></ion-input>
                       </ion-item>
                       <ion-item *ngIf="usernameError">
                         <ion-text color="danger" id="usernameError">{{ usernameError }}</ion-text>
@@ -80,7 +80,7 @@
 
                       <ion-item [lines]="passwordError ? 'none' : 'full'">
                           <ion-label>Password</ion-label>
-                          <ion-input (change)="validatePassword()" autocomplete="new-password" name="password" id="password" [(ngModel)]="registrationAccount.password" type="password" placeholder="Inserisci la tua password" #password="ngModel" required></ion-input>
+                          <ion-input (ionChange)="validatePassword()" autocomplete="new-password" name="password" id="password" [(ngModel)]="registrationAccount.password" type="password" placeholder="Inserisci la tua password" #password="ngModel" required></ion-input>
                       </ion-item>
                       <ion-item *ngIf="passwordError">
                         <ion-text color="danger" id="passwordError">{{ passwordError }}</ion-text>
@@ -88,7 +88,7 @@
 
                       <ion-item [lines]="confirmPasswordError ? 'none' : 'full'">
                         <ion-label>Conferma password</ion-label>
-                        <ion-input (change)="validateConfirmPassword()" autocomplete="new-password" name="confirmPassword" id="confirmPassword" [(ngModel)]="_confirmPassword" type="password" placeholder="Conferma la tua password" #confirmPassword="ngModel" required></ion-input>
+                        <ion-input (ionChange)="validateConfirmPassword()" autocomplete="new-password" name="confirmPassword" id="confirmPassword" [(ngModel)]="_confirmPassword" type="password" placeholder="Conferma la tua password" #confirmPassword="ngModel" required></ion-input>
                       </ion-item>
                       <ion-item *ngIf="confirmPasswordError">
                         <ion-text color="danger" id="confirmPasswordError">{{ confirmPasswordError }}</ion-text>

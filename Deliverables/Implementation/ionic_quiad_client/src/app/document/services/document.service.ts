@@ -34,6 +34,8 @@ export class DocumentService {
 
 export interface SearchDocumentsFilter {
 
+  name?: string;
+  categoryId?: number;
   retrievalPlace?: string;
   retrievalDate?: Date | string;
   originPlace?: string;

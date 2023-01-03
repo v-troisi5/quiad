@@ -62,8 +62,10 @@ export class NodeComponent implements OnInit {
           handler: () => {
             this.treeService
               .deleteNode(node.id!)
-              .subscribe(node => {
-                this.account?.user.deleteNode(node.id!);
+              .subscribe(nodes => {
+                for(const id of nodes) {
+                  this.account?.user.deleteNode(id);
+                }
                 this.accountProviderService.save(this.account);
                 this.toastController.create({
                   message: "Il nodo è stato eliminato",

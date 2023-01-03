@@ -13,27 +13,54 @@
         <ion-row>
           <ion-col>
             <ion-item>
+              <ion-input id="name" name="name" [(ngModel)]="filter.name" placeholder="Nome del documento..."></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label>Tipologia di documento</ion-label>
+              <ion-select id="categoryId" name="categoryId" [(ngModel)]="filter.categoryId" placeholder="Tipologia di documento">
+                <ion-select-option value="1">Certificato di nascita</ion-select-option>
+                <ion-select-option value="2">Certificato di morte</ion-select-option>
+                <ion-select-option value="3">Certificato di matrimonio</ion-select-option>
+                <ion-select-option value="4">Registro di leva</ion-select-option>
+                <ion-select-option value="5">Censimento</ion-select-option>
+                <ion-select-option value="6">Giornale</ion-select-option>
+                <ion-select-option value="7">Lettera</ion-select-option>
+                <ion-select-option value="8">Scritto personale</ion-select-option>
+                <ion-select-option value="9">Iconografia</ion-select-option>
+                <ion-select-option value="10">Altro</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
               <ion-label position="floating">Luogo di origine</ion-label>
-              <ion-input [(ngModel)]="filter.originPlace"></ion-input>
+              <ion-input id="originPlace" name="originPlace" [(ngModel)]="filter.originPlace"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="floating">Luogo di ritrovamento</ion-label>
-              <ion-input [(ngModel)]="filter.retrievalPlace"></ion-input>
+              <ion-input id="retrievalPlace" name="retrievalPlace" [(ngModel)]="filter.retrievalPlace"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col>
             <ion-item>
               <ion-label position="floating" color="medium">Data di origine</ion-label>
-              <ion-input [(ngModel)]="filter.originDate" type="date"></ion-input>
+              <ion-input id="originDate" name="originDate" [(ngModel)]="filter.originDate" type="date"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="floating" color="medium">Data di ritrovamento</ion-label>
-              <ion-input [(ngModel)]="filter.retrievalDate" type="date"></ion-input>
+              <ion-input id="retrievalDate" name="retrievalDate" [(ngModel)]="filter.retrievalDate" type="date"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
       </ion-grid>
-      <ion-button (click)="onSubmit()">
+      <ion-item *ngIf="nameError">
+        <ion-text id="nameError" color="danger">{{ nameError }}</ion-text>
+      </ion-item>
+      <ion-button id="search-documents" (click)="onSubmit()">
         <ion-icon slot="start" name="search"></ion-icon>
         Cerca
       </ion-button>
@@ -42,15 +69,36 @@
 
   <ion-card *ngFor="let document of documents">
     <ion-card-content>
-      <ion-title>{{ document.name }}</ion-title>
-      <ion-buttons>
-        <ion-button routerLink="/main/documents/{{document.id}}">A</ion-button>
-      </ion-buttons>
+      <ion-item>
+        <ion-title>{{ document.name }}</ion-title>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Tipologia</ion-label>
+        <ion-text>{{ document.categoryId }}</ion-text>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label slot="start">
+          <p>Origine</p>
+          {{ document.originPlace }} | {{ document.originDate | date }}
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label slot="start">
+          <p>Ritrovamento</p>
+          {{ document.retrievalPlace }} | {{ document.retrievalDate | date }}
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-buttons slot="end">
+          <ion-button class="view-document" color="primary" routerLink="/main/documents/{{document.id}}">
+            <ion-icon name="eye" slot="start"></ion-icon>
+            Visualizza documento
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
     </ion-card-content>
   </ion-card>
 
+  <app-footer></app-footer>
 </ion-content>
 
-<ion-footer>
-  <app-footer></app-footer>
-</ion-footer>

@@ -118,21 +118,20 @@ export class RegisterPage implements OnInit {
   }
 
   onSubmit(registrationAccount: RegistrationAccount) {
-    console.log(registrationAccount);
-    // this.registrationService
-    //   .register(this.registrationAccount)
-    //   .subscribe({
-    //     next: account => {
-    //       this.navController.navigateRoot("/main/login", {
-    //         queryParams: {
-    //           "username": account.username
-    //         }
-    //       })
-    //     },
-    //     error: error => {
-    //       this.error = error.error.message;
-    //     }
-    //   });
+    this.registrationService
+      .register(this.registrationAccount)
+      .subscribe({
+        next: account => {
+          this.navController.navigateRoot("/main/login", {
+            queryParams: {
+              "username": account.username
+            }
+          })
+        },
+        error: error => {
+          this.error = error.error.message;
+        }
+      });
   }
 
 }

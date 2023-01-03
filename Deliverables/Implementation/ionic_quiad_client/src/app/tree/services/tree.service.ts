@@ -49,13 +49,13 @@ export class TreeService {
 
   public deleteNode(id: number) {
     return this.httpClient
-      .delete<INode>(environment.apiUrl + environment.paths.nodes + "/" + id)
-      .pipe(
-        map((node) => {
-          const _ = new Node(node);
-          return _;
-        }),
-      )
+      .delete<number[]>(environment.apiUrl + environment.paths.nodes + "/" + id)
+      // .pipe(
+      //   map((node) => {
+      //     const _ = new Node(node);
+      //     return _;
+      //   }),
+      // )
   }
 
   public bindDocument(node: number, document: number) {

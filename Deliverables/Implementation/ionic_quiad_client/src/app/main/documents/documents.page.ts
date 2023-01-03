@@ -13,6 +13,8 @@ export class DocumentsPage implements OnInit {
 
   public documents: Document[] = [];
 
+  public nameError?: string;
+
   constructor(
     private documentService: DocumentService,
   ) { }
@@ -21,6 +23,14 @@ export class DocumentsPage implements OnInit {
   }
 
   public onSubmit() {
+    if(this.filter.name) {
+      if(this.filter.name.length < 3 || this.filter.name.length > 80) {
+        this.nameError = "Il nome deve essere compreso tra 3 e 80 caratteri";
+        return;
+      } else {
+        this.nameError = undefined;
+      }
+    }
     const filter: SearchDocumentsFilter = {
       ...this.filter,
       originDate: this.filter.originDate ? new Date(this.filter.originDate).toISOString() : undefined,
