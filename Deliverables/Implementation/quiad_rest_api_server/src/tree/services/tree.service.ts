@@ -19,7 +19,6 @@ export class TreeService {
 
     public async createNode(req: Request, res: Response, next: NextFunction): Promise<void> {
         const node = new Node(req.body.node);
-        console.log(node);
         // Verifica delle precodizioni nella costruzione dell'oggetto
         try {
             const insertedNode = await this.nodeController.createNode(node);

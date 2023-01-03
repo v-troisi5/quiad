@@ -1,4 +1,5 @@
 import { Prisma, PrismaClient } from "@prisma/client";
+import { bfs } from "../../utils/bfs";
 import { prisma } from "../../utils/clients";
 import { Node } from "../models/Node";
 
@@ -117,13 +118,86 @@ export class NodeController {
         return updatedNode as Node;
     }
 
-    public async deleteNode(id: number): Promise<Node> {
-        const node = await this.prisma.node.delete({
+    public async deleteNode(id: number): Promise<number[]> {
+        const node = await this.prisma.node.findUnique({
             where: {
-                id: id,
-            }
+                id: id
+            },
         });
-        return node as Node;
+        if(node?.ownerId) {
+            const user = await this.prisma.user.findUnique({
+                where: {
+                    id: node.ownerId
+                },
+                select: {
+                    node: {
+                        select: {
+                            id: true,
+                            firstname: true,
+                            lastname: true,
+                            fatherId: true,
+                            motherId: true,
+                            motherHasChildren: {
+                                select: {
+                                    id: true,
+                                    fatherId: true,
+                                    motherId: true,
+                                }
+                            },
+                            fatherHasChildren: {
+                                select: {
+                                    id: true,
+                                    fatherId: true,
+                                    motherId: true,
+                                }
+                            },
+                        }
+                    }
+                }
+            });
+            const tree = await this.prisma.node.findMany({
+                where: {
+                    ownerId: node?.ownerId,
+                    AND: {
+                        id: {
+                            not: id
+                        }
+                    }
+                },
+                select: {
+                    id: true,
+                    fatherId: true,
+                    motherId: true,
+                    motherHasChildren: {
+                        select: {
+                            id: true,
+                            fatherId: true,
+                            motherId: true,
+                        }
+                    },
+                    fatherHasChildren: {
+                        select: {
+                            id: true,
+                            fatherId: true,
+                            motherId: true,
+                        }
+                    },
+                }
+            });
+            const cc = bfs(user?.node as any, tree as any);
+            const nodesToDelete = tree.filter(n => !cc.find(_ => _ == n as any)).map(n => n.id); // Restituisce la lista dei nodi da eliminare per mantenere una corretta struttura dell'albero genealogico
+            nodesToDelete.push(id);
+            await this.prisma.node.deleteMany({
+                where: {
+                    id: {
+                        in: nodesToDelete
+                    }
+                },
+            });
+            return nodesToDelete as any;
+        } else {
+            throw new Error();
+        }
     }
 
     public async bindDocument(node: number, document: number): Promise<Node> {
