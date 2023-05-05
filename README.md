@@ -4,7 +4,7 @@
 
 ## Contesto
 
-Quiad è un sistema per la creazione e la gestione del proprio albero genialogico. Grazie a **Quiad** chiunque potrà accedere ad un'ampia raccolta di documentazione storica, al fine di scoprire quali sono le proprie origini.
+Quiad è un sistema per la creazione e la gestione del proprio albero genealogico. Grazie a **Quiad** chiunque potrà accedere ad un'ampia raccolta di documentazione storica, al fine di scoprire quali sono le proprie origini.
 
 ## Deliverables
 
